@@ -11,8 +11,8 @@ public class CookEgg_ProgressBar : MonoBehaviour
     [SerializeField] private Slider temperatureSlider; 
     [SerializeField] private Slider progressSlider;
     [SerializeField] private TextMeshProUGUI sliderText;
-    [SerializeField] private float minTempValue;
-    [SerializeField] private float maxTempValue;
+    public float minTempValue;
+    public float maxTempValue;
 
     void Start()
     {

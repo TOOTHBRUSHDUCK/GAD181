@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-public class CookEggTemperature : MonoBehaviour
+public class CookEgg_TemperatureBar : MonoBehaviour
 {
     [SerializeField] private Slider slider;
     [SerializeField] private TextMeshProUGUI sliderText;
@@ -11,39 +11,34 @@ public class CookEggTemperature : MonoBehaviour
     [SerializeField] private float tempDropRate = 1.0f;
     void Start()
     {
-        slider.onValueChanged.AddListener((v) => 
-        {
-            sliderText.text = v.ToString("00");
-        }
-        );
+        TextChange();
 
         InvokeRepeating("TemperatureChange", 2.0f, tempDropRate);
     }
 
     void Update()
     {
-        //UpdateProgress();
+        
     }
-
-    //void UpdateProgress()
-    //{
-    //    if(slider.value>62 && slider.value<70)
-    //    {
-    //    
-    //    }
-    //    else if(slider.value>70)
-    //    {
-    //    
-    //    }
-    //}
 
     void TemperatureChange()
     {
         if(slider.value>30 && slider.value<100)
         {
-            slider.value -= tempertureDrop;
+            var x = Random.Range(-tempertureDrop*3, tempertureDrop);
+            slider.value -= x;
         }
     }
+
+    void TextChange()
+    {
+        slider.onValueChanged.AddListener((v) => 
+        {
+            sliderText.text = v.ToString("00");
+        }
+        );
+    }
+
 }
 
 
