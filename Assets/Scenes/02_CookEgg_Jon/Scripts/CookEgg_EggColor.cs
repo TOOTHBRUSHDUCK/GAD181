@@ -43,7 +43,7 @@ public class CookEgg_EggColor : MonoBehaviour
     {
         if(tempSlider.value > progressBar.maxTempValue)
         {
-            GetComponent<Renderer>().material.color = Color.red;
+            GetComponent<Renderer>().material.color = Color.black;
         }
     }
  

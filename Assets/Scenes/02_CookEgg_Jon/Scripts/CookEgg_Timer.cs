@@ -6,37 +6,41 @@ using TMPro;
 
 public class CookEgg_Timer : MonoBehaviour
 {
-    public float TimeLeft;
-    public bool TimerOn = false;
-    public TextMeshProUGUI TimerTxt;
+    public float timeLeft;
+    public bool timerOn = false;
+    public TextMeshProUGUI timerTxt;
     void Start()
     {
-        TimerOn = true;
+        timerOn = true;
     }
 
     void Update()
     {
-        if(TimerOn==true)
+      SetTimer();
+    }
+
+    void SetTimer()
+    {
+        if(timerOn==true)
         {
-            if(TimeLeft>0)
+            if(timeLeft>0)
             {
-                TimeLeft -= Time.deltaTime;
-                updateTimer(TimeLeft);
+                timeLeft -= Time.deltaTime;
+                UpdateTimer(timeLeft);
             }
             else
             {
                 Debug.Log("Time is Up!");
-                TimeLeft = 0;
-                TimerOn = false;
+                timeLeft = 0;
+                timerOn = false;
             }
         }
     }
-
-    void updateTimer(float currentTime)
+    void UpdateTimer(float currentTime)
     {
         currentTime += 1;
         float minutes = Mathf.FloorToInt(currentTime / 60);
         float seconds = Mathf.FloorToInt(currentTime % 60);
-        TimerTxt.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+        timerTxt.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 }
