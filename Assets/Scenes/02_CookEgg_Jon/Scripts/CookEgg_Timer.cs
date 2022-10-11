@@ -43,4 +43,9 @@ public class CookEgg_Timer : MonoBehaviour
         float seconds = Mathf.FloorToInt(currentTime % 60);
         timerTxt.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
+
+    public void TimerOff()
+    {
+        timerOn = false;
+    }
 }

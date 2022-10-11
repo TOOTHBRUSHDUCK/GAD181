@@ -23,11 +23,11 @@ public class CookEgg_Controller : MonoBehaviour
 
     void MoveTemperature()
     {
-        if(Input.GetKeyDown("w"))
+        if(Input.GetKeyDown("w")==true)
         {
             slider.value += valueChange;
         }
-        else if(Input.GetKeyDown("s"))
+        else if(Input.GetKeyDown("s")==true)
         {
             slider.value -= valueChange;
         }
