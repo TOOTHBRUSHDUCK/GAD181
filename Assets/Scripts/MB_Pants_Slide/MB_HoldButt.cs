@@ -9,13 +9,14 @@ public class MB_HoldButt : MonoBehaviour
     [SerializeField] protected int initialWait; //Initial time where pressing a key will not succeed.
     [SerializeField] protected int endWait; //Time at end where input will not succeed
     [SerializeField] protected int timeLimit; //What is the time limit for the game? This should match the timer script
-    [SerializeField] protected string desiredInput; //what should be held
-    [SerializeField] protected int desiredHold; //How long should it be held? Put 1 to just check for any amount
+    [SerializeField] protected string desiredInput; //what should be held. If 'any', it will call a slightly different script
+    [SerializeField] protected int desiredHold; //How long should it be held? Put 1 to just check for any amount. For mashers, this is how many times they should mash the button
     [SerializeField] protected bool failEarly; //Will the player fail for pressing button early?
     [SerializeField] protected bool failLate; //Will the player fail for pressing button late?
     [SerializeField] protected bool failTime; //Will the player fail for the timer running out?
     [SerializeField] protected bool resetHoldOnRelease; //Is the hold timer reset on releasing the key early?
     [SerializeField] protected int score; //How much score player will gain
+    [SerializeField] protected bool mash; //Is this a button masher? If so, should not use resetHoldOnRelease unless you have a crazy plan.
 
     private protected int timer = 0; //tick up by 1 every fixed update
     [SerializeField] private protected int heldTime = 0; //How long input held at correct time
@@ -24,13 +25,59 @@ public class MB_HoldButt : MonoBehaviour
 
     void Update() //Update is purely used to check for the desired input, and sets a bool to true while it's held
     {
-        if(Input.GetKey(desiredInput))
+        if(desiredInput != "any")
         {
-            isHeld = true;
+            if(mash)
+            {
+               if(Input.GetKeyDown(desiredInput))
+                {
+                    //isHeld = true;
+                    heldTime++;
+                    DoOnHold();
+                }
+                else
+                {
+                    isHeld = false;
+                } 
+            }
+            else
+            {
+                if(Input.GetKey(desiredInput))
+                {
+                    isHeld = true;
+                }
+                else
+                {
+                    isHeld = false;
+                }
+            }
         }
         else
         {
-            isHeld = false;
+            if(mash)
+            {
+               if(Input.anyKeyDown)
+                {
+                    //isHeld = true;
+                    heldTime++;
+                    DoOnHold();
+                }
+                else
+                {
+                    isHeld = false;
+                } 
+            }
+            else
+            {
+                if(Input.anyKey)
+                {
+                    isHeld = true;
+                }
+                else
+                {
+                    isHeld = false;
+                }
+            }
         }
     }
 

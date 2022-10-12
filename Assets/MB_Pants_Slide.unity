@@ -811,6 +811,7 @@ MonoBehaviour:
   failTime: 1
   resetHoldOnRelease: 0
   score: 0
+  mash: 0
   heldTime: 0
   gameEnded: 0
 --- !u!65 &1481701730
