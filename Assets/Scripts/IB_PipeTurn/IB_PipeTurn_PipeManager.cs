@@ -8,11 +8,19 @@ public class IB_PipeTurn_PipeManager : MonoBehaviour
     //current pipe variable
     private IB_PipeTurn_PipeTurner currentPipe;
 
+    //reference to material of the current pipe
+    private MeshRenderer pipeRenderer;
+
+    [SerializeField] Material currentPipeMat;
+    [SerializeField] Material normPipeMat;
+
     //list of all pipes
     [SerializeField] private List<IB_PipeTurn_PipeTurner> pipeTurners = new List<IB_PipeTurn_PipeTurner>();
 
     //integer to track the index of the current pipe
     private int pipeIndex;
+
+    
 
     private void Awake()
     {
@@ -27,16 +35,36 @@ public class IB_PipeTurn_PipeManager : MonoBehaviour
     }
 
     private void Start()
-    {
+    {           
         currentPipe = pipeTurners[0];
         pipeIndex = 0;
+         pipeRenderer = currentPipe.GetComponent<MeshRenderer>();    
+        pipeRenderer.material = currentPipeMat;
     }
 
     //on update
     private void Update()
     {
         //check for player input to turn pipes and invoke the 'turn pipe' event
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            currentPipe.TurnPipe(0);
+        }
+        else if (Input.GetKeyDown(KeyCode.D))
+        {
+            currentPipe.TurnPipe(1);
+        }
+
         //check for player input to switch pipes and call the 'switch pipe' method
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            SwitchPipe(0);
+        }
+        else if (Input.GetKeyDown(KeyCode.S))
+        {
+            SwitchPipe(1);
+        }
+        
         //call the 'check if all pipes are aligned' method
 
         //boolean method for checking if all pipes are aligned
@@ -51,38 +79,47 @@ public class IB_PipeTurn_PipeManager : MonoBehaviour
     //takes in input variable up or down
     private void SwitchPipe(int dir)
     {
+        pipeRenderer.material = normPipeMat;
         //if the input is up: check if the currently selected pipe is at index 0 in pipe list
-        if(dir == 0)
+        if (dir == 0)
         {
             //if it is at 0 then switch currently selected pipe to pipe at last index in the pipe list
-            if(currentPipe = pipeTurners[0])
+            if(currentPipe == pipeTurners[0])
             {
+                
                 currentPipe = pipeTurners.Last();
-                pipeIndex = pipeTurners.Count();
+                pipeIndex = pipeTurners.Count() -1;
+                
+
             }
             //otherwise switch the currently selected pipe to the pipe list current pipe's index - 1
             else
-            {
+            {                
                 pipeIndex--;
-                currentPipe = pipeTurners[pipeIndex];
+                currentPipe = pipeTurners[pipeIndex];                
             }
         }
         //if the input is down: check if the currently selected pipe is at the last index in the pipe list
         else if(dir == 1)
         {
             //if it is at the last index in the list then switch the currently selected pipe to the pipe at index 0
-            if (currentPipe == pipeTurners.Last())
-            {
+            if (pipeIndex == pipeTurners.Count() - 1)
+            {                
                 currentPipe = pipeTurners[0];
                 pipeIndex = 0;
+              
             }
             //otherwise switch the currently selected pipe to the pipe which is at the current pipe's index - 1
             else
             {
+                
                 pipeIndex++;
                 currentPipe = pipeTurners[pipeIndex];
+               
             }
         }
-    }
+        pipeRenderer = currentPipe.GetComponent<MeshRenderer>();
+        pipeRenderer.material = currentPipeMat;
+    }   
 
 }

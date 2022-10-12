@@ -3637,7 +3637,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 8685f6dc1e09637449c478c295bcc52b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4111,7 +4111,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 8685f6dc1e09637449c478c295bcc52b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -7888,7 +7888,7 @@ GameObject:
   - component: {fileID: 1269133627}
   - component: {fileID: 1269133626}
   m_Layer: 0
-  m_Name: PIpeManager
+  m_Name: PipeManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7906,6 +7906,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af99967d096cc5349a61294c9210af52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentPipeMat: {fileID: 2100000, guid: 747697cabe058f2408a24123fe4bad0f, type: 2}
+  normPipeMat: {fileID: 2100000, guid: 8685f6dc1e09637449c478c295bcc52b, type: 2}
   pipeTurners: []
 --- !u!4 &1269133627
 Transform:
@@ -11464,7 +11466,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 8685f6dc1e09637449c478c295bcc52b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

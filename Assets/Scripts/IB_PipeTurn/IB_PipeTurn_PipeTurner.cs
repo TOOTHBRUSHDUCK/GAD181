@@ -26,7 +26,7 @@ public class IB_PipeTurn_PipeTurner : MonoBehaviour
         }
     }
 
-    private void Update()
+   /* private void Update()
     {
         //placeholder input for testing
         /*if (Input.GetKeyDown(KeyCode.A))
@@ -36,12 +36,12 @@ public class IB_PipeTurn_PipeTurner : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.D))
         {
             turnPipe(1);
-        }*/
-    }
+        }
+    }*/
 
     //pipe turning method
     //takes in input variable 'left' or 'right' and turns the pipe accordingly
-    public void turnPipe(int dir)
+    public void TurnPipe(int dir)
     {
         //the currently active pipe will rotate 90 degrees left or right depending on input variable
         if (dir == 0)
