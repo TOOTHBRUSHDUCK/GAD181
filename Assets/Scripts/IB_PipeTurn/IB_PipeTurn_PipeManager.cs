@@ -1,10 +1,14 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using TMPro;
 
 public class IB_PipeTurn_PipeManager : MonoBehaviour
 {
+    [SerializeField] TMP_Text timerText;
+
     //current pipe variable
     private IB_PipeTurn_PipeTurner currentPipe;
 
@@ -25,12 +29,17 @@ public class IB_PipeTurn_PipeManager : MonoBehaviour
 
     public static IB_PipeTurn_PipeManager instance;
 
+    //float for timer
+    private float timer;
+
     private void OnEnable()
     {
         if(instance == null)
         {
             instance = this;
         }
+
+        timer = 10f;
     }
 
     private void Awake()
@@ -57,6 +66,12 @@ public class IB_PipeTurn_PipeManager : MonoBehaviour
     //on update
     private void Update()
     {
+        if(timer > 0)
+        {
+            timer -= Time.deltaTime;
+            timerText.text = "Time Remaining: " + (int)timer;
+        }
+
         //check for player input to turn pipes and invoke the 'turn pipe' event
         if (Input.GetKeyDown(KeyCode.A))
         {
@@ -80,10 +95,32 @@ public class IB_PipeTurn_PipeManager : MonoBehaviour
         }
         
         //call the 'check if all pipes are aligned' method
+        if(PipeTurnWinCheck() == true)
+        {
+            Debug.Log("You win the game!");
+            Time.timeScale = 0;
+        }
+        else if(PipeTurnWinCheck() == false && timer <= 0)
+        {
+            Debug.Log("You lost the game!");
+            Time.timeScale = 0;
+        }      
+        
+    }
 
-        //boolean method for checking if all pipes are aligned
+
+    //boolean method for checking if all pipes are aligned
+    private bool PipeTurnWinCheck()
+    {
         //iterate through all pipes in list of pipes and call the 'check aligned' method
-        //if one of the pipes returns false: return false on this method
+        for (int i = 0; i < pipeTurners.Count; i++)
+        {
+            if (pipeTurners[i].CheckAligned() == false)
+            {
+                return false;
+            }            
+        }
+        return true;        
         //if none of the pipes return false: return true on this method
     }
 
