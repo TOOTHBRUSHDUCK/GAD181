@@ -20,10 +20,22 @@ public class IB_PipeTurn_PipeManager : MonoBehaviour
     //integer to track the index of the current pipe
     private int pipeIndex;
 
-    
+    public delegate void PipeCheckEvent();
+    public event PipeCheckEvent pipeCheckEvent;
+
+    public static IB_PipeTurn_PipeManager instance;
+
+    private void OnEnable()
+    {
+        if(instance == null)
+        {
+            instance = this;
+        }
+    }
 
     private void Awake()
     {
+
         GameObject[] gameObjects = GameObject.FindGameObjectsWithTag("Pipe");
         for(int i = 0; i < gameObjects.Length; i++)
         {
@@ -49,10 +61,12 @@ public class IB_PipeTurn_PipeManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.A))
         {
             currentPipe.TurnPipe(0);
+            Invoke("CheckPipes", 1f);
         }
         else if (Input.GetKeyDown(KeyCode.D))
         {
             currentPipe.TurnPipe(1);
+            Invoke("CheckPipes", 1f);
         }
 
         //check for player input to switch pipes and call the 'switch pipe' method
@@ -73,7 +87,10 @@ public class IB_PipeTurn_PipeManager : MonoBehaviour
         //if none of the pipes return false: return true on this method
     }
 
-
+    private void CheckPipes()
+    {
+        pipeCheckEvent.Invoke();
+    }
 
     //pipe switching method
     //takes in input variable up or down

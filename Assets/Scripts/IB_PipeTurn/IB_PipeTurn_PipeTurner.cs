@@ -9,6 +9,7 @@ public class IB_PipeTurn_PipeTurner : MonoBehaviour
 
     //pipe is aligned boolean variable
     private bool aligned = false;
+       
 
     private void Awake()
     {
@@ -23,21 +24,26 @@ public class IB_PipeTurn_PipeTurner : MonoBehaviour
         if(posNode == null)
         {
             Debug.LogError("You need to have a child object with the pipe_Positive tag!");
-        }
+        }        
     }
 
-   /* private void Update()
+    private void Start()
     {
-        //placeholder input for testing
-        /*if (Input.GetKeyDown(KeyCode.A))
-        {
-            turnPipe(0);
-        }
-        else if (Input.GetKeyDown(KeyCode.D))
-        {
-            turnPipe(1);
-        }
-    }*/
+        IB_PipeTurn_PipeManager.instance.pipeCheckEvent += SetAligned;
+    }
+
+    /* private void Update()
+     {
+         //placeholder input for testing
+         /*if (Input.GetKeyDown(KeyCode.A))
+         {
+             turnPipe(0);
+         }
+         else if (Input.GetKeyDown(KeyCode.D))
+         {
+             turnPipe(1);
+         }
+     }*/
 
     //pipe turning method
     //takes in input variable 'left' or 'right' and turns the pipe accordingly
@@ -52,6 +58,11 @@ public class IB_PipeTurn_PipeTurner : MonoBehaviour
         {
             transform.eulerAngles += new Vector3(0, 90, 0);
         }
+        
+    }
+
+    private void SetAligned()
+    {
         //the pipe will send out a raycast 'forward' from the positive node
         RaycastHit hit;
         Physics.Raycast(posNode.transform.position, posNode.transform.forward, out hit, 5f);
@@ -63,19 +74,19 @@ public class IB_PipeTurn_PipeTurner : MonoBehaviour
             if (hit.collider.tag == "pipe_Negative")
             {
                 aligned = true;
-                Debug.Log("The pipe is aligned!");
+                Debug.Log(name + " is aligned!");
             }
             //if the raycast doesn't hit a 'pipe_Negative' collider then set the pipe to negativ
             else if (hit.collider.tag != "pipe_Negative") 
             {
                 aligned = false;
-                Debug.Log("The pipe is not aligned!");
+                Debug.Log(name + " is not aligned!");
             } 
         }
         else
         {
             aligned = false;
-            Debug.Log("The pipe is not aligned!");
+            Debug.Log(name + " is not aligned!");
         }
     }
 
