@@ -6,21 +6,21 @@ public class MB_HoldButt : MonoBehaviour
 {
     //This covers: Press a button in a window of time, hold a button for a duration, do nothing for a timer, etc.
     //All time considered in engine ticks, ie FixedUpdate ticks. 50 occur a second, so 50 = 1s
-    [SerializeField] int initialWait; //Initial time where pressing a key will not succeed.
-    [SerializeField] int endWait; //Time at end where input will not succeed
-    [SerializeField] int timeLimit; //What is the time limit for the game? This should match the timer script
-    [SerializeField] string desiredInput; //what should be held
-    [SerializeField] int desiredHold; //How long should it be held? Put 1 to just check for any amount
-    [SerializeField] bool failEarly; //Will the player fail for pressing button early?
-    [SerializeField] bool failLate; //Will the player fail for pressing button late?
-    [SerializeField] bool failTime; //Will the player fail for the timer running out?
-    [SerializeField] bool resetHoldOnRelease; //Is the hold timer reset on releasing the key early?
-    [SerializeField] int score; //How much score player will gain
+    [SerializeField] protected int initialWait; //Initial time where pressing a key will not succeed.
+    [SerializeField] protected int endWait; //Time at end where input will not succeed
+    [SerializeField] protected int timeLimit; //What is the time limit for the game? This should match the timer script
+    [SerializeField] protected string desiredInput; //what should be held
+    [SerializeField] protected int desiredHold; //How long should it be held? Put 1 to just check for any amount
+    [SerializeField] protected bool failEarly; //Will the player fail for pressing button early?
+    [SerializeField] protected bool failLate; //Will the player fail for pressing button late?
+    [SerializeField] protected bool failTime; //Will the player fail for the timer running out?
+    [SerializeField] protected bool resetHoldOnRelease; //Is the hold timer reset on releasing the key early?
+    [SerializeField] protected int score; //How much score player will gain
 
-    private int timer = 0; //tick up by 1 every fixed update
-    [SerializeField] private int heldTime = 0; //How long input held at correct time
-    [SerializeField] private bool gameEnded; //has the game ended yet. Used for if things happen after game end
-    private bool isHeld = false; //is the desired input currently being held
+    private protected int timer = 0; //tick up by 1 every fixed update
+    [SerializeField] private protected int heldTime = 0; //How long input held at correct time
+    [SerializeField] private protected bool gameEnded; //has the game ended yet. Used for if things happen after game end
+    private protected bool isHeld = false; //is the desired input currently being held
 
     void Update() //Update is purely used to check for the desired input, and sets a bool to true while it's held
     {
@@ -42,9 +42,9 @@ public class MB_HoldButt : MonoBehaviour
 
     public virtual void CheckHold() //Meat of this parent class
     {
-        if(timer >= timeLimit) //Make sure not overtime, if you are, thend using the appropriate ending.
+        if(timer >= timeLimit) //Make sure not overtime, if you are, then using the appropriate ending.
         {
-            if(failTime)
+            if(failTime && heldTime < desiredHold)
             {
                 Fail();
             }
@@ -53,7 +53,7 @@ public class MB_HoldButt : MonoBehaviour
                 Win();
             }
         }
-        if(isHeld)
+        if(isHeld) //Very simple, while holding the input tick up the hold time, or fail if it's too early or late and meant to
         {
             if(timer >= initialWait && timer <= (timeLimit - endWait))
             {
@@ -69,11 +69,11 @@ public class MB_HoldButt : MonoBehaviour
                 Fail();
             }
         }
-        else if(resetHoldOnRelease)
+        else if(resetHoldOnRelease) //Actually reset the held time if told to reset the held time
         {
             heldTime = 0;
         }
-        if(heldTime >= desiredHold)
+        if(heldTime >= desiredHold) //main win call :O
         {
             Win();
         }
