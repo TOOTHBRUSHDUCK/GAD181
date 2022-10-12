@@ -174,6 +174,11 @@ public class IB_PipeTurn_PipeManager : MonoBehaviour
         }
         pipeRenderer = currentPipe.GetComponent<MeshRenderer>();
         pipeRenderer.material = currentPipeMat;
-    }   
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        
+    }
 
 }
