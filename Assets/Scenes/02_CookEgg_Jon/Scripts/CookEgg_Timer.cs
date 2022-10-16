@@ -11,7 +11,7 @@ public class CookEgg_Timer : MonoBehaviour
     public TextMeshProUGUI timerTxt;
     void Start()
     {
-        timerOn = true;
+        //timerOn = true;
     }
 
     void Update()
@@ -47,5 +47,10 @@ public class CookEgg_Timer : MonoBehaviour
     public void TimerOff()
     {
         timerOn = false;
+    }
+    //assign to StartGame button to start timer
+    public void TimerTurnOn()
+    {
+        timerOn = true;
     }
 }
