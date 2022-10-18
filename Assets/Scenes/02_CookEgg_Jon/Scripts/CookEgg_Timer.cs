@@ -9,6 +9,7 @@ public class CookEgg_Timer : MonoBehaviour
     public float timeLeft;
     public bool timerOn = false;
     public TextMeshProUGUI timerTxt;
+
     void Start()
     {
         //timerOn = true;
@@ -17,6 +18,7 @@ public class CookEgg_Timer : MonoBehaviour
     void Update()
     {
       SetTimer();
+      CountDown();
     }
 
     void SetTimer()
@@ -53,4 +55,13 @@ public class CookEgg_Timer : MonoBehaviour
     {
         timerOn = true;
     }
+
+    private void CountDown()
+    {
+        if(timeLeft<10 && timerOn == true)
+        {
+            timerTxt.GetComponent<TextMeshProUGUI>().color = Color.red;
+        }
+    }
 }
+
