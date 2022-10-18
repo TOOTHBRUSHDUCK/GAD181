@@ -369,7 +369,7 @@ GameObject:
   - component: {fileID: 144332529}
   - component: {fileID: 144332530}
   m_Layer: 0
-  m_Name: Audio Controller
+  m_Name: Volume Controller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -382,13 +382,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 144332527}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1035.6729, y: 839.81116, z: 2.3756537}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -285.96558, y: 196.67456, z: -14.375137}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_Father: {fileID: 493085602}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &144332530
 MonoBehaviour:
@@ -885,7 +885,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 493085602}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &240557029
 GameObject:
@@ -2021,6 +2021,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 234219542}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: PlayOneShot
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: b37de372753847a4daacf6c3c93ada9c,
+            type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &405472150
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2209,6 +2222,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2082016969}
+  - {fileID: 144332529}
   - {fileID: 1457208010}
   - {fileID: 234219543}
   - {fileID: 715760482}
@@ -2640,13 +2654,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e3fb1c348e959a4fa845c8595e94d4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  progressIncreaseValue: 0.02
+  progressIncreaseValue: 0.03
   progressIncreaseRate: 1
   temperatureSlider: {fileID: 1193522380}
   progressSlider: {fileID: 513771472}
   sliderText: {fileID: 1355793474}
-  minTempValue: 60
-  maxTempValue: 70
+  progressOn: 0
+  minTempValue: 50
+  maxTempValue: 65
 --- !u!1 &525650479
 GameObject:
   m_ObjectHideFlags: 0
@@ -2747,7 +2762,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 493085602}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &609971130
 AudioSource:
@@ -3221,7 +3236,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 493085602}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &715760483
 AudioSource:
@@ -4739,8 +4754,8 @@ MonoBehaviour:
     Egg = temperature too low, press W to increase temeprature.
 
 
-    Black Egg =
-    temperature too high, press S to drop temperature
+    Orange Egg
+    = temperature too high, press S to drop temperature
 
 '
   m_isRightToLeft: 0
@@ -5864,7 +5879,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 493085602}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &1355776129
 AudioSource:
@@ -6904,7 +6919,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 493085602}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1482818214
 GameObject:
@@ -9269,6 +9284,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 513771473}
+        m_TargetAssemblyTypeName: CookEgg_ProgressBar, Assembly-CSharp
+        m_MethodName: ProgressTurnOff
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   loseGameUI:
     m_PersistentCalls:
       m_Calls:
@@ -9312,6 +9339,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 513771473}
+        m_TargetAssemblyTypeName: CookEgg_ProgressBar, Assembly-CSharp
+        m_MethodName: ProgressTurnOff
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
