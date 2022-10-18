@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class CookEgg_EggColor : MonoBehaviour
 {
     private Color startcolor;
+    private Color overCookedColor;
     [SerializeField] private CookEgg_ProgressBar progressBar;
     [SerializeField] private Slider tempSlider;
     
@@ -23,6 +24,7 @@ public class CookEgg_EggColor : MonoBehaviour
     void NotCooking()
     {
         startcolor = GetComponent<Renderer>().material.color;
+        overCookedColor = new Color(1f, 0.67f, 0.11f, 1);
     }
 
     void UnderCooked()
@@ -43,7 +45,7 @@ public class CookEgg_EggColor : MonoBehaviour
     {
         if(tempSlider.value > progressBar.maxTempValue)
         {
-            GetComponent<Renderer>().material.color = Color.black;
+            GetComponent<Renderer>().material.color = overCookedColor;
         }
     }
  
