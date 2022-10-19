@@ -58,7 +58,7 @@ public class CookEgg_Timer : MonoBehaviour
 
     private void CountDown()
     {
-        if(timeLeft<10 && timerOn == true)
+        if(timeLeft<3 && timerOn == true)
         {
             timerTxt.GetComponent<TextMeshProUGUI>().color = Color.red;
         }

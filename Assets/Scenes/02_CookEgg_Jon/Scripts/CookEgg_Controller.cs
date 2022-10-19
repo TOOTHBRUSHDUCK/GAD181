@@ -18,18 +18,30 @@ public class CookEgg_Controller : MonoBehaviour
 
     void Update()
     {
-        MoveTemperature();
+        IncreaseTemperatureInput();
+        DropTemperatureInput();
     }
 
-    void MoveTemperature()
+    public void IncreaseTemperatureInput()
     {
         if(Input.GetKeyDown("w")==true)
         {
-            slider.value += valueChange;
+            IncreaseTemperature();
         }
-        else if(Input.GetKeyDown("s")==true)
+    }
+    public void DropTemperatureInput()
+    {
+        if(Input.GetKeyDown("s")==true)
         {
-            slider.value -= valueChange;
+            DropTemperature();
         }
+    }
+    void IncreaseTemperature()
+    {
+        slider.value += valueChange;
+    }
+    void DropTemperature()
+    {
+        slider.value -= valueChange;
     }
 }
