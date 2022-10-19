@@ -10669,7 +10669,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-42772
+  m_Name: pb_Mesh27434
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -10968,7 +10968,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-41906
+  m_Name: pb_Mesh27524
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -14704,7 +14704,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-113632
+  m_Name: pb_Mesh27406
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -14899,7 +14899,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh27374
+  m_Name: pb_Mesh27468
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -15419,19 +15419,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af99967d096cc5349a61294c9210af52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialWait: 0
-  endWait: 0
-  timeLimit: 0
-  desiredInput: s
-  desiredHold: 1
-  failEarly: 0
-  failLate: 0
-  failTime: 0
-  resetHoldOnRelease: 0
-  score: 0
-  mash: 0
-  heldTime: 0
-  gameEnded: 0
   timerText: {fileID: 428355763}
   currentPipeMat: {fileID: 2100000, guid: 747697cabe058f2408a24123fe4bad0f, type: 2}
   normPipeMat: {fileID: 2100000, guid: 8685f6dc1e09637449c478c295bcc52b, type: 2}
@@ -19014,7 +19001,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-113626
+  m_Name: pb_Mesh27418
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
