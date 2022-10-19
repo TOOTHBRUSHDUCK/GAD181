@@ -72,7 +72,9 @@ public class IB_PipeTurn_PipeManager : MonoBehaviour
             timerText.text = "Time Remaining: " + (int)timer;
         }
 
-        //check for player input to turn pipes and invoke the 'turn pipe' event
+        //check for player input to turn pipes and invoke the 'turn pipe' event      
+
+
         if (Input.GetKeyDown(KeyCode.A))
         {
             currentPipe.TurnPipe(0);
@@ -175,6 +177,12 @@ public class IB_PipeTurn_PipeManager : MonoBehaviour
         pipeRenderer = currentPipe.GetComponent<MeshRenderer>();
         pipeRenderer.material = currentPipeMat;
     }
+
+    /* (was just testing the MB_HoldButt script)
+    public override void DoOnHold()
+    {
+        Debug.Log("Pottatato");
+    }*/
 
     private void OnTriggerEnter(Collider other)
     {
