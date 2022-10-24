@@ -38,7 +38,7 @@ public class CookEgg_Event : MonoBehaviour
             winGameUI.Invoke();
         }
     }
-//to pop up W or S button UI to notify players which button to press 
+    //to pop up W or S button UI to notify players which button to press 
     void Buttonsignal()
     {
         if(temperatureBar.value<40 && ButtonSignalOn == true)

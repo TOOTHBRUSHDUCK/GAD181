@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/02_CookEgg_Jon.unity
     guid: aa4b10491f242dd4886eca6d39def0fd
+  - enabled: 1
+    path: Assets/Scenes/06_DriveInTraffic.unity
+    guid: 78183c617e143dc46adee02e9e3a8628
   m_configObjects: {}
