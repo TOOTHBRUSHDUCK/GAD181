@@ -7,6 +7,7 @@ using TMPro;
 
 public class IB_PipeTurn_PipeManager : MonoBehaviour
 {
+    //variable referencing the text on the UI
     [SerializeField] TMP_Text timerText;
 
     //current pipe variable
@@ -15,6 +16,7 @@ public class IB_PipeTurn_PipeManager : MonoBehaviour
     //reference to material of the current pipe
     private MeshRenderer pipeRenderer;
 
+    //references to the materials to be used for a selected pipe vs a non-selected pipe
     [SerializeField] Material currentPipeMat;
     [SerializeField] Material normPipeMat;
 
@@ -24,9 +26,11 @@ public class IB_PipeTurn_PipeManager : MonoBehaviour
     //integer to track the index of the current pipe
     private int pipeIndex;
 
+    //delegate and event for the event which will make all the pipes check if they are currently aligned
     public delegate void PipeCheckEvent();
     public event PipeCheckEvent pipeCheckEvent;
 
+    //the variable for the singleton
     public static IB_PipeTurn_PipeManager instance;
 
     //float for timer
@@ -34,17 +38,19 @@ public class IB_PipeTurn_PipeManager : MonoBehaviour
 
     private void OnEnable()
     {
+        //set up the singleton for this manager
         if(instance == null)
         {
             instance = this;
         }
 
+        //set the initial value for the timer
         timer = 10f;
     }
 
     private void Awake()
     {
-
+        //compile a list of game objects tagged with pipe so that different layouts can be used without being hardcoded/set up with this game manager in the inspetor manually
         GameObject[] gameObjects = GameObject.FindGameObjectsWithTag("Pipe");
         for(int i = 0; i < gameObjects.Length; i++)
         {
@@ -56,24 +62,24 @@ public class IB_PipeTurn_PipeManager : MonoBehaviour
     }
 
     private void Start()
-    {           
+    {
+        //assigning the pipe object which will be selected on start up as the first pipe in the list of all pipes, and setting the index value used elsewhere to match it
         currentPipe = pipeTurners[0];
         pipeIndex = 0;
-         pipeRenderer = currentPipe.GetComponent<MeshRenderer>();    
+        //setting the material of the current pipe to be the 'selected' material
+        pipeRenderer = currentPipe.GetComponent<MeshRenderer>();    
         pipeRenderer.material = currentPipeMat;
     }
 
     //on update
     private void Update()
     {
+        //on each frame decrease the time remaining by deltatime and udpate the UI
         if(timer > 0)
         {
             timer -= Time.deltaTime;
             timerText.text = "Time Remaining: " + (int)timer;
         }
-
-        //check for player input to turn pipes and invoke the 'turn pipe' event      
-
 
         if (Input.GetKeyDown(KeyCode.A))
         {
@@ -99,13 +105,14 @@ public class IB_PipeTurn_PipeManager : MonoBehaviour
         //call the 'check if all pipes are aligned' method
         if(PipeTurnWinCheck() == true)
         {
-            Debug.Log("You win the game!");
-            Time.timeScale = 0;
+            //Debug.Log("You win the game!");
+            EventManager.microGameCompleteEvent(true);
+            
         }
         else if(PipeTurnWinCheck() == false && timer <= 0)
         {
-            Debug.Log("You lost the game!");
-            Time.timeScale = 0;
+            //Debug.Log("You lost the game!");
+            EventManager.microGameCompleteEvent(false);
         }      
         
     }
@@ -126,6 +133,7 @@ public class IB_PipeTurn_PipeManager : MonoBehaviour
         //if none of the pipes return false: return true on this method
     }
 
+    //intermediary method to allow us to invoke the pipeCheckEvent with a delay elswhere
     private void CheckPipes()
     {
         pipeCheckEvent.Invoke();
@@ -174,19 +182,8 @@ public class IB_PipeTurn_PipeManager : MonoBehaviour
                
             }
         }
+        //once the pipe has switched, update the piperenderer variable to be the meshrenderer on the current pipe then change it's material
         pipeRenderer = currentPipe.GetComponent<MeshRenderer>();
         pipeRenderer.material = currentPipeMat;
     }
-
-    /* (was just testing the MB_HoldButt script)
-    public override void DoOnHold()
-    {
-        Debug.Log("Pottatato");
-    }*/
-
-    private void OnTriggerEnter(Collider other)
-    {
-        
-    }
-
 }

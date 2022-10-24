@@ -29,6 +29,7 @@ public class IB_PipeTurn_PipeTurner : MonoBehaviour
 
     private void Start()
     {
+        //subscribe to the pipecheckevent
         IB_PipeTurn_PipeManager.instance.pipeCheckEvent += SetAligned;
     }
 
@@ -74,19 +75,19 @@ public class IB_PipeTurn_PipeTurner : MonoBehaviour
             if (hit.collider.tag == "pipe_Negative")
             {
                 aligned = true;
-                Debug.Log(name + " is aligned!");
+                //Debug.Log(name + " is aligned!");
             }
             //if the raycast doesn't hit a 'pipe_Negative' collider then set the pipe to negativ
             else if (hit.collider.tag != "pipe_Negative") 
             {
                 aligned = false;
-                Debug.Log(name + " is not aligned!");
+                //Debug.Log(name + " is not aligned!");
             } 
         }
         else
         {
             aligned = false;
-            Debug.Log(name + " is not aligned!");
+            //Debug.Log(name + " is not aligned!");
         }
     }
 
@@ -102,6 +103,11 @@ public class IB_PipeTurn_PipeTurner : MonoBehaviour
         {
             return false;
         }
+    }
+
+    private void OnDestroy()
+    {
+        IB_PipeTurn_PipeManager.instance.pipeCheckEvent -= SetAligned;
     }
 
 }
