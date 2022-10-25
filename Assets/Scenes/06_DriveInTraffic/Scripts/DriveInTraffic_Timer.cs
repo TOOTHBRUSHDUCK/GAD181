@@ -11,7 +11,7 @@ public class DriveInTraffic_Timer : MonoBehaviour
 
     void Start()
     {
-        //timerOn = true;
+    
     }
 
     void Update()
@@ -44,17 +44,17 @@ public class DriveInTraffic_Timer : MonoBehaviour
         float seconds = Mathf.FloorToInt(currentTime % 60);
         timerTxt.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
-
+    //turn off the timer, default at start then turn off again when game ends
     public void TimerOff()
     {
         timerOn = false;
     }
-    //assign to StartGame button to start timer
+    //turn on the timer, set the timerOn to true when game starts
     public void TimerTurnOn()
     {
         timerOn = true;
     }
-
+    //changes text colour if timeleft<3  
     private void CountDown()
     {
         if(timeLeft<3 && timerOn == true)

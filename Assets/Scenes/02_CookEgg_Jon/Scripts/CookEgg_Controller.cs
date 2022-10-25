@@ -21,7 +21,7 @@ public class CookEgg_Controller : MonoBehaviour
         IncreaseTemperatureInput();
         DropTemperatureInput();
     }
-
+    //press w button to increase temperature value
     public void IncreaseTemperatureInput()
     {
         if(Input.GetKeyDown("w")==true)
@@ -29,6 +29,7 @@ public class CookEgg_Controller : MonoBehaviour
             IncreaseTemperature();
         }
     }
+    //press s button to decrease temperature value
     public void DropTemperatureInput()
     {
         if(Input.GetKeyDown("s")==true)
@@ -36,10 +37,12 @@ public class CookEgg_Controller : MonoBehaviour
             DropTemperature();
         }
     }
+    //increase temperature by valuechange each time the button is pressed
     void IncreaseTemperature()
     {
         slider.value += valueChange;
     }
+    //decrease temperature by valuechange each time the button is pressed
     void DropTemperature()
     {
         slider.value -= valueChange;

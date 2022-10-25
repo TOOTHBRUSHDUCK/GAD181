@@ -10,7 +10,7 @@ public class CookEgg_ProgressBar : MonoBehaviour
     [SerializeField] private float progressIncreaseRate;
     [SerializeField] private Slider temperatureSlider; 
     [SerializeField] private Slider progressSlider;
-    [SerializeField] private TextMeshProUGUI sliderText;
+    [SerializeField] private TextMeshProUGUI progressSliderText;
     public bool progressOn = false;
     public float minTempValue;
     public float maxTempValue;
@@ -19,7 +19,7 @@ public class CookEgg_ProgressBar : MonoBehaviour
     {
         progressSlider.onValueChanged.AddListener((v) =>
         {
-            sliderText.text = v.ToString("000");
+            progressSliderText.text = v.ToString("000");
         }
         );
 
@@ -33,7 +33,7 @@ public class CookEgg_ProgressBar : MonoBehaviour
         ProgressChange();
         ProgressColorChange();
     }
-
+    //progress value will only increase if temperature slider value is in between minTempValue and maxTempValue
     private void ProgressChange()
     {
         if(temperatureSlider.value > minTempValue && temperatureSlider.value <maxTempValue && progressOn == true)
@@ -41,20 +41,20 @@ public class CookEgg_ProgressBar : MonoBehaviour
             progressSlider.value += progressIncreaseValue; 
         }
     }
-
+    //changes progress text colour in response to progress value
     private void ProgressColorChange()
     {
         if(progressSlider.value < 30 && progressOn)
         {
-            sliderText.color = Color.red;
+            progressSliderText.color = Color.red;
         }
         else if(progressSlider.value >= 30 && progressSlider.value <70)
         {
-            sliderText.color = Color.blue;
+            progressSliderText.color = Color.blue;
         }
         else if(progressSlider.value >= 70)
         {
-            sliderText.color = Color.green;
+            progressSliderText.color = Color.green;
         }
     }
 

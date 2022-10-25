@@ -42,7 +42,7 @@ public class DriveInTraffic_Controller : MonoBehaviour
         { 
             this.transform.RotateAround(this.transform.position, Vector3.up, -turnSpeed * Time.deltaTime); 
         }
-
+        //detect if game object is on the ground
         if (Input.GetKey(KeyCode.Space) == true && isGrounded)
         {
             isGrounded = false;

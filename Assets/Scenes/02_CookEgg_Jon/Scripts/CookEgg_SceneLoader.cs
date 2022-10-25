@@ -5,13 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class CookEgg_SceneLoader : MonoBehaviour
 {
-    public Animator transition;
+    public Animator transitionAnimator;
     public float transitionTime = 1f;
     void Update()
     {
         
     }
-
     public void LoadNextScene(string sceneName)
     {
         StartCoroutine(LoadLevel(sceneName));
@@ -19,7 +18,7 @@ public class CookEgg_SceneLoader : MonoBehaviour
 
     IEnumerator LoadLevel(string sceneName)
     {
-        transition.SetTrigger("Start");
+        transitionAnimator.SetTrigger("Start");
         yield return new WaitForSeconds(transitionTime);
         SceneManager.LoadScene(sceneName);
     }

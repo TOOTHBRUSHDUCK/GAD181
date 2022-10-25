@@ -5,7 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class DriveInTraffic_SceneLoader : MonoBehaviour
 {
-    public Animator transition;
+    //assign which animator to play during scene transition 
+    public Animator transitionAnimator;
+    //set how long to wait before loading the next scene, can adjust based on how long of the animation
     public float transitionTime = 1f;
     void Update()
     {
@@ -19,7 +21,7 @@ public class DriveInTraffic_SceneLoader : MonoBehaviour
 
     IEnumerator LoadLevel(string sceneName)
     {
-        transition.SetTrigger("Start");
+        transitionAnimator.SetTrigger("Start");
         yield return new WaitForSeconds(transitionTime);
         SceneManager.LoadScene(sceneName);
     }

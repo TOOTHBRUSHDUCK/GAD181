@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class CookEgg_VolumeSaveController : MonoBehaviour
+public class DriveInTraffic_VolumeSaveController : MonoBehaviour
 {
     [SerializeField] private Slider volumeSlider = null;
     [SerializeField] private TextMeshProUGUI volumeTextUI = null;

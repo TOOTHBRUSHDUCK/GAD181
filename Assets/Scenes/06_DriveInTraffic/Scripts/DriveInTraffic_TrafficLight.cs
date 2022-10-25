@@ -19,6 +19,7 @@ public class DriveInTraffic_TrafficLight : MonoBehaviour
     {
         ChangeTrafficLight();
     }
+    //set when to turn green, yellow and red light
     private void ChangeTrafficLight()
     {
         if(timer.timeLeft >3)

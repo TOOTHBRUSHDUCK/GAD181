@@ -54,11 +54,12 @@ public class CookEgg_Event : MonoBehaviour
             RemoveButtonSignal.Invoke();
         }
     }
-
+    //show button signal
     public void TurnOnButtonSignal()
     {
         ButtonSignalOn = true;
     }
+    //remove button signal
     public void TurnOffButtonSignal()
     {
         ButtonSignalOn = false;
