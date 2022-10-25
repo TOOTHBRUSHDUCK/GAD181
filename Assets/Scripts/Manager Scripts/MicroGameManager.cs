@@ -63,6 +63,7 @@ public class MicroGameManager : MonoBehaviour
     //method for generating a random list of microgames from all microgame indexes
     private void GenerateRandomGameList()
     {
+
         for(int x = 0; x < allMicroGames.Count; x++)
         {
             int ran = Random.Range(0, allMicroGames.Count);
