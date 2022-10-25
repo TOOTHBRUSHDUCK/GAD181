@@ -2,6 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+/* Code written by Ian 'Scotch' Bell for GAD181 Brief 1/2/3 at SAE Institute Perth 22T3
+ * In collaboration with: Michael Bzdyl, John Min Wong, Felix Speller and Matt Hopkins 
+ * 
+ * This script simply contains all delegates & events which the game 'Make the Snake' will require for its full functionality
+ * The script operates as a singleton and as such only one should be present in the scene at one time.
+ */
+
 public class EventManager : MonoBehaviour
 {
     //static event manager variable for the singleton

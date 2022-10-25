@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     //either ‘3 Strikes’, ‘Playlist’ or ‘SinglePlay’ 
     public enum GameMode { ThreeStrikes, WholePlaylist, Singleplay }
 
-    public GameMode gameMode;
+    public GameMode gameMode { get; private set; }
 
     //boolean for game being paused. If this is set to true then other scripts will not run their update function 
     public bool isPaused { get; private set; }
