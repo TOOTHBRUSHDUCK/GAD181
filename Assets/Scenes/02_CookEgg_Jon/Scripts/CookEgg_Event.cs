@@ -12,17 +12,25 @@ public class CookEgg_Event : MonoBehaviour
     public UnityEvent Load_W_Button;
     public UnityEvent Load_S_Button;
     public UnityEvent RemoveButtonSignal;
+    public UnityEvent gameStart;
     [SerializeField] Slider progressBar;
     [SerializeField] Slider temperatureBar;
     [SerializeField] CookEgg_Timer timer;
     //turn on button signal after clikcing start button, turn off button when win/lose UI pops up
-    public bool ButtonSignalOn = false;
+    public bool ButtonSignalOn;
+    public bool gameOn;
     //[SerializeField] bool winGame;
 
+    void Start() 
+    {
+        ButtonSignalOn = false;
+        gameOn = false;    
+    }
     void Update() 
     {
         GameState();
         Buttonsignal();
+        StartGame();
     }
 
     void GameState()
@@ -31,11 +39,13 @@ public class CookEgg_Event : MonoBehaviour
         {
             //winGame = false;
             loseGameUI.Invoke();
+            gameOn = false;
         }
         else if(progressBar.value==100 && timer.timeLeft>0)
         {
             //winGame = true;
             winGameUI.Invoke();
+            gameOn = false;
         }
     }
     //to pop up W or S button UI to notify players which button to press 
@@ -63,5 +73,16 @@ public class CookEgg_Event : MonoBehaviour
     public void TurnOffButtonSignal()
     {
         ButtonSignalOn = false;
+    }
+    private void StartGame()
+    {
+        if(gameOn == true)
+        {
+            gameStart.Invoke();
+        }
+    }
+    public void TurnGameOn()
+    {
+        gameOn = true;
     }
 }

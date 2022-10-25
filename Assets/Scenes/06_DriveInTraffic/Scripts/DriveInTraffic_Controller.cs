@@ -12,7 +12,7 @@ public class DriveInTraffic_Controller : MonoBehaviour
 
     void Start()
     {
-      
+
     }    
     void Update()
     {
@@ -23,24 +23,23 @@ public class DriveInTraffic_Controller : MonoBehaviour
         //move forwadrs
         if (Input.GetKey(KeyCode.W) == true)
         { 
-            this.transform.position += this.transform.forward * moveSpeed * Time.deltaTime; 
+            this.transform.position += this.transform.forward * moveSpeed * Time.deltaTime;
         }
         //move backwards
         if (Input.GetKey(KeyCode.S) == true)
         { 
-            this.transform.position -= this.transform.forward * moveSpeed * Time.deltaTime; 
+            this.transform.position -= this.transform.forward * moveSpeed * Time.deltaTime;            
         }
-
         //float angle = turnspeed * Time.deltaTime ; positive value of turnspeed will turn the object clockwise(turn right)
         if (Input.GetKey(KeyCode.D) == true)
         { 
-            this.transform.RotateAround(this.transform.position, Vector3.up, turnSpeed * Time.deltaTime); 
+            this.transform.RotateAround(this.transform.position, Vector3.up, turnSpeed * Time.deltaTime);            
         }
-
         //float angle = -turnspeed * Time.deltaTime ; negative value of turnspeed will turn the object anti-clockwise(turn left)
         if (Input.GetKey(KeyCode.A) == true)
         { 
             this.transform.RotateAround(this.transform.position, Vector3.up, -turnSpeed * Time.deltaTime); 
+            
         }
         //detect if game object is on the ground
         if (Input.GetKey(KeyCode.Space) == true && isGrounded)
