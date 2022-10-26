@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Menus : MonoBehaviour
+public class MenuManager : MonoBehaviour
 {
     [SerializeField] GameObject mainMenu;
 
@@ -21,6 +21,12 @@ public class Menus : MonoBehaviour
     private void LoadMainMenu()
     {
         mainMenu.SetActive(true);
+    }
+
+    private void OnDestroy()
+    {
+        EventManager.closeMenuEvent -= CloseMenus;
+        EventManager.returnMainMenuEvent -= LoadMainMenu;
     }
 
 }

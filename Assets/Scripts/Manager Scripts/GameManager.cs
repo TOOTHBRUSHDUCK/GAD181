@@ -24,11 +24,18 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject highScoreManagerPref;
     [SerializeField] GameObject audioManagerPref;
 
+    public static GameManager Instance;
+
     //on enable instantiate the Event Manager, MicroGameManager, UIManager, HighScoreManager and AudioManager 
     private void OnEnable()
     {
         //instantiate other managers
         LoadManagers();
+
+        if(Instance == null)
+        {
+            Instance = this;
+        }
     }
 
 
@@ -140,10 +147,12 @@ public class GameManager : MonoBehaviour
                 gameMode = GameMode.ThreeStrikes;
                 livesRemaining = 3;
                 //invoke NewGameStart and pass it 0 for threestrikes
+                EventManager.newGameStartEvent(_gameMode);
                 break;
             case 1:
                 gameMode = GameMode.WholePlaylist;
                 //invoke the NewGameStart event and pass it 1 for every game once
+                EventManager.newGameStartEvent(_gameMode);
                 break;            
         }
     }
@@ -165,7 +174,7 @@ public class GameManager : MonoBehaviour
 
     //method for handling a microgame being complete 
     private void MicrogameComplete(bool win) //takes in win/lose variable 
-    {
+    {        
         //if win: check the game type 
         if(win == true)
         {
@@ -173,11 +182,12 @@ public class GameManager : MonoBehaviour
             {
                 //invoke ‘UpdateHighScore’ event and invoke ‘NextGameRandom’ event
                 Debug.Log("You won the game!");
-                EventManager.returnMainMenuEvent();
+                EventManager.nextGameRandomEvent();
             }
             else if(gameMode == GameMode.WholePlaylist) //if entire playlist
             {
                 //invoke ‘UpdateHighScore’ event and invoke ‘NextGamePlaylist’ event 
+                EventManager.nextGameWholePlaylistEvent();
             }
             else //if Freeplay:
             {
@@ -194,7 +204,9 @@ public class GameManager : MonoBehaviour
                 if(livesRemaining > 1)
                 {
                     //Yes? Subtract 1 life and invoke ‘NextGameRandom’
+                    livesRemaining--;
                     //Debug.Log("You won the game!");
+                    EventManager.nextGameRandomEvent();
                 }
                 else
                 {
@@ -206,6 +218,7 @@ public class GameManager : MonoBehaviour
             else if (gameMode == GameMode.WholePlaylist) //if entire playlist
             {
                 //invoke ‘NextGamePlaylist’ event 
+                EventManager.nextGameWholePlaylistEvent();
             }
             else //if Freeplay:
             {

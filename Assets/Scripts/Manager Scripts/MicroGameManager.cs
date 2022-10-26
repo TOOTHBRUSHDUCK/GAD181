@@ -34,8 +34,7 @@ public class MicroGameManager : MonoBehaviour
             Destroy(gameObject);
         }        
 
-        //PLACEHOLDER FOR TESTING
-        currentGameIndex = 1;
+        //PLACEHOLDER FOR TESTING        
     }
 
 
@@ -55,6 +54,7 @@ public class MicroGameManager : MonoBehaviour
         //NextGameRandom
         EventManager.nextGameRandomEvent += NextGameRandom;
         //NextGameWholePlaylist
+        EventManager.nextGameWholePlaylistEvent += NextGameWholePlayList;
         //ReturnMainMenu
         EventManager.returnMainMenuEvent += CloseMicroGame;
 
@@ -68,8 +68,11 @@ public class MicroGameManager : MonoBehaviour
     //this also update the 'current microgame' integer
     private void LaunchMicroGame(int gameIndex)
     {
-        SceneManager.LoadScene(gameIndex, LoadSceneMode.Additive);
-        currentGameIndex = gameIndex;
+        SceneManager.LoadScene(gameIndex, LoadSceneMode.Additive);      
+        if(GameManager.Instance.gameMode == GameManager.GameMode.Singleplay)
+        {
+            currentGameIndex = gameIndex;
+        }
     }
 
     private void LaunchPlaylist(int playList)
@@ -79,14 +82,14 @@ public class MicroGameManager : MonoBehaviour
             EventManager.closeMenuEvent(); //close any open menus
             GenerateRandomGameList(); //create the initial random playlist
             currentGameIndex = 0; //set the currentGameIndex to be 0
-            //LaunchMicroGame(currentPlaylist[currentGameIndex]);
+            LaunchMicroGame(randomPlaylist[currentGameIndex]);
             Debug.Log("Launching Microgame " + randomPlaylist[currentGameIndex]);
         }
         if(playList == 1) //launch the whole playlist mode
         {
             EventManager.closeMenuEvent(); //close any open menus
             currentGameIndex = 0; //set the current game index to be zero
-            //LaunchPlaylist(allMicroGames[currentGameIndex]);
+            LaunchMicroGame(allMicroGames[currentGameIndex]);
             Debug.Log("Launching Microgame " + allMicroGames[currentGameIndex]);
         }
     }
@@ -94,14 +97,25 @@ public class MicroGameManager : MonoBehaviour
     //method for closing a microgame (unloading the scene) taking in an integer for the 'current microgame'
     private void CloseMicroGame()
     {
-        SceneManager.UnloadSceneAsync(currentGameIndex);
+        if(GameManager.Instance.gameMode == GameManager.GameMode.ThreeStrikes)
+        {
+            SceneManager.UnloadSceneAsync(randomPlaylist[currentGameIndex]);
+        }
+        else if(GameManager.Instance.gameMode == GameManager.GameMode.WholePlaylist)
+        {
+            SceneManager.UnloadSceneAsync(allMicroGames[currentGameIndex]);
+        }
+        else
+        {
+            SceneManager.UnloadSceneAsync(currentGameIndex);
+        }
     }
 
     //method for generating a random list of microgames from all microgame indexes
     private void GenerateRandomGameList()
     {        
-        randomPlaylist.Clear(); 
-        
+        randomPlaylist.Clear();    
+        currentGameIndex = 0;
 
         //temporary list equal to regular list
         List<int> tempPlaylist = new List<int>();
@@ -141,11 +155,13 @@ public class MicroGameManager : MonoBehaviour
 
     private void NextGameRandom()
     {
+        CloseMicroGame();
         //check if the game currently being played is the last one in the entire list of random games
-        if (currentGameIndex != randomPlaylist[randomPlaylist.Count]) 
+        if (currentGameIndex < randomPlaylist.Count - 1) 
         {
             //increase the index of the current microgame by one
             currentGameIndex++;
+            Debug.Log(currentGameIndex);
             //launch the next microgame in that list
             LaunchMicroGame(randomPlaylist[currentGameIndex]);
         }
@@ -161,7 +177,8 @@ public class MicroGameManager : MonoBehaviour
 
     private void NextGameWholePlayList()
     {
-        if(currentGameIndex != allMicroGames[allMicroGames.Count])
+        CloseMicroGame();
+        if(currentGameIndex < allMicroGames.Count - 1)
         {
             currentGameIndex++;
             LaunchMicroGame(allMicroGames[currentGameIndex]);
@@ -184,6 +201,7 @@ public class MicroGameManager : MonoBehaviour
         //NextGameRandom
         EventManager.nextGameRandomEvent -= NextGameRandom;
         //NextGameWholePlaylist
+        EventManager.nextGameWholePlaylistEvent -= NextGameWholePlayList;
         //ReturnMainMenu
         EventManager.returnMainMenuEvent -= CloseMicroGame;
     }
