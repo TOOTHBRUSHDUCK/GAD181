@@ -30,7 +30,7 @@ public class IB_PipeTurn_PipeTurner : MonoBehaviour
     private void Start()
     {
         //subscribe to the pipecheckevent
-        IB_PipeTurn_PipeManager.instance.pipeCheckEvent += SetAligned;
+        EventManager.pipeCheckEvent += SetAligned;
     }
 
     /* private void Update()
@@ -107,7 +107,7 @@ public class IB_PipeTurn_PipeTurner : MonoBehaviour
 
     private void OnDestroy()
     {
-        IB_PipeTurn_PipeManager.instance.pipeCheckEvent -= SetAligned;
+        EventManager.pipeCheckEvent -= SetAligned;
     }
 
 }
