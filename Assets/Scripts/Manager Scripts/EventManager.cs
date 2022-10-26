@@ -104,4 +104,12 @@ public class EventManager : MonoBehaviour
     public delegate void LoadSettings();
     public static LoadSettings loadSettingsEvent;
 
+
+    /*
+     *Event/s for 01_PipeTurn_IB 
+     */
+    //delegate and event for the event which will make all the pipes check if they are currently aligned
+    public delegate void PipeCheckEvent();
+    public static PipeCheckEvent pipeCheckEvent;
+
 }

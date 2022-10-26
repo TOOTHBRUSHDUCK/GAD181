@@ -124,7 +124,9 @@ public class GameManager : MonoBehaviour
 
     public void PlayOneGame(int gameID)
     {
+        //Debug.Log("Hi");
         gameMode = GameMode.Singleplay;
+        EventManager.closeMenuEvent();
         EventManager.playOneGameEvent(gameID);
     }
 
@@ -158,9 +160,8 @@ public class GameManager : MonoBehaviour
     {
         isPaused = false;
         //invoke the CloseMenus event
+        EventManager.closeMenuEvent();
     }
-
-
 
     //method for handling a microgame being complete 
     private void MicrogameComplete(bool win) //takes in win/lose variable 
@@ -181,6 +182,7 @@ public class GameManager : MonoBehaviour
             else //if Freeplay:
             {
                 //invoke ‘UpdateHighScore’ event and invoke ‘MainMenu’ event 
+                EventManager.returnMainMenuEvent();
             }
         }
         else //if lose:  
@@ -208,6 +210,7 @@ public class GameManager : MonoBehaviour
             else //if Freeplay:
             {
                 //invoke ‘MainMenu’ event 
+                EventManager.returnMainMenuEvent();
             }
         }
     }

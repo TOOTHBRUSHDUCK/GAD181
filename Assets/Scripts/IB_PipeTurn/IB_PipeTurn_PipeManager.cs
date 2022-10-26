@@ -24,11 +24,7 @@ public class IB_PipeTurn_PipeManager : MonoBehaviour
     [SerializeField] private List<IB_PipeTurn_PipeTurner> pipeTurners = new List<IB_PipeTurn_PipeTurner>();
 
     //integer to track the index of the current pipe
-    private int pipeIndex;
-
-    //delegate and event for the event which will make all the pipes check if they are currently aligned
-    public delegate void PipeCheckEvent();
-    public event PipeCheckEvent pipeCheckEvent;
+    private int pipeIndex;    
 
     //the variable for the singleton
     public static IB_PipeTurn_PipeManager instance;
@@ -42,7 +38,7 @@ public class IB_PipeTurn_PipeManager : MonoBehaviour
         if(instance == null)
         {
             instance = this;
-        }
+        }        
 
         //set the initial value for the timer
         timer = 10f;
@@ -121,14 +117,17 @@ public class IB_PipeTurn_PipeManager : MonoBehaviour
     //boolean method for checking if all pipes are aligned
     private bool PipeTurnWinCheck()
     {
+        //Debug.Log("I'm working");
         //iterate through all pipes in list of pipes and call the 'check aligned' method
         for (int i = 0; i < pipeTurners.Count; i++)
         {
             if (pipeTurners[i].CheckAligned() == false)
             {
+                //Debug.Log("Not all pipes aligned");
                 return false;
             }            
         }
+        //Debug.Log("All pipes aligned");
         return true;        
         //if none of the pipes return false: return true on this method
     }
@@ -136,7 +135,7 @@ public class IB_PipeTurn_PipeManager : MonoBehaviour
     //intermediary method to allow us to invoke the pipeCheckEvent with a delay elswhere
     private void CheckPipes()
     {
-        pipeCheckEvent.Invoke();
+        EventManager.pipeCheckEvent();
     }
 
     //pipe switching method

@@ -59,7 +59,7 @@ public class MicroGameManager : MonoBehaviour
         EventManager.returnMainMenuEvent += CloseMicroGame;
 
         //PLACEHOLDER FOR TESTING
-        GenerateRandomGameList();
+        //GenerateRandomGameList();
     }
 
 
@@ -176,5 +176,15 @@ public class MicroGameManager : MonoBehaviour
     private void OnDestroy()
     {
         //when this object is destroyed unscubscribe from all events
+        //subscribe to the PlayOneGame event
+        EventManager.playOneGameEvent -= LaunchMicroGame;
+        //subscribe to the StartGame event
+        EventManager.newGameStartEvent -= LaunchPlaylist;
+        //in the start function subscribe to the following events:
+        //NextGameRandom
+        EventManager.nextGameRandomEvent -= NextGameRandom;
+        //NextGameWholePlaylist
+        //ReturnMainMenu
+        EventManager.returnMainMenuEvent -= CloseMicroGame;
     }
 }
