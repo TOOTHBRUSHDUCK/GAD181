@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MB_HoldButt : MonoBehaviour
 {
-    //This covers: Press a button in a window of time, hold a button for a duration, do nothing for a timer, etc.
+    //This covers: Press a button in a window of time, hold a button for a duration, do nothing for a timer, mash a button, press any button, etc.
     //All time considered in engine ticks, ie FixedUpdate ticks. 50 occur a second, so 50 = 1s
     [SerializeField] protected int initialWait; //Initial time where pressing a key will not succeed.
     [SerializeField] protected int endWait; //Time at end where input will not succeed
