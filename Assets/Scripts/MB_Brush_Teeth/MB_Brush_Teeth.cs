@@ -13,7 +13,7 @@ public class MB_Brush_Teeth : MB_HoldButt
 
     public override void DoOnHold()
     {
-        Debug.Log("called");
+        //Debug.Log("called");
         if(this.transform.position.x >= 2)
         {
             rb.velocity = new Vector3(-0.8f,0,0) * (heldTime+2);

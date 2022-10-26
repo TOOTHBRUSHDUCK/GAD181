@@ -136,11 +136,17 @@ public class MB_HoldButt : MonoBehaviour
     {
         //call fail event
         Debug.Log("Fail");
+        //Application.Quit();
+        Application.LoadLevel(Application.loadedLevel);
+        //UnityEditor.EditorApplication.isPlaying = false;
     }
 
     public virtual void Win()
     {
         //call win event
         Debug.Log("Win");
+        //Application.Quit();
+        Application.LoadLevel(Application.loadedLevel);
+        //UnityEditor.EditorApplication.isPlaying = false;
     }
 }
