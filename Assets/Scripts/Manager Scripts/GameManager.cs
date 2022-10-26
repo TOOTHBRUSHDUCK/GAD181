@@ -16,14 +16,19 @@ public class GameManager : MonoBehaviour
     //integer for the number of lives remaining in ‘3 strikes’ mode 
     public int livesRemaining { get; private set; }
 
+
+    //references to the prefab manager objects + scripts
+    [SerializeField] GameObject eventManagerPref;
+    [SerializeField] GameObject microGameManagerPref;
+    [SerializeField] GameObject uiManagerPref;
+    [SerializeField] GameObject highScoreManagerPref;
+    [SerializeField] GameObject audioManagerPref;
+
     //on enable instantiate the Event Manager, MicroGameManager, UIManager, HighScoreManager and AudioManager 
     private void OnEnable()
     {
-        //instantiate EventManager
-        //instantiate Microgame
-        //instantiate UIManager
-        //instantiate HighScoreManager
-        //instantiate AudioManager
+        //instantiate other managers
+        LoadManagers();
     }
 
 
@@ -31,17 +36,32 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         //subscribe to the ‘PauseGame’ and ‘UnpauseGame’ events on EventManager 
+        EventManager.pauseGameEvent += PauseGame;
+        EventManager.unpauseGameEvent += UnpauseGame;
         //subscribe to ‘QuitGame’ event on EventManager 
+        EventManager.quitGameEvent += QuitGame;
         //subscribe to ‘MicroGameComplete’ event on EventManager 
         EventManager.microGameCompleteEvent += MicrogameComplete;
         //subscribe to ‘SaveSettings’ event on EventManager 
+        EventManager.saveSettingsEvent += SaveSettings;
+        //subscribe to 'loading settings' on EventManager
+        EventManager.loadSettingsEvent += LoadSettings;
     }
 
     //on destroy: 
     private void OnDestroy()
     {
+        //subscribe to the ‘PauseGame’ and ‘UnpauseGame’ events on EventManager 
+        EventManager.pauseGameEvent -= PauseGame;
+        EventManager.unpauseGameEvent -= UnpauseGame;
+        //subscribe to ‘QuitGame’ event on EventManager 
+        EventManager.quitGameEvent -= QuitGame;
         //unsubscribe from all events 
         EventManager.microGameCompleteEvent -= MicrogameComplete;
+        //subscribe to ‘SaveSettings’ event on EventManager 
+        EventManager.saveSettingsEvent -= SaveSettings;
+        //subscribe to 'loading settings' on EventManager
+        EventManager.loadSettingsEvent -= LoadSettings;
     }
 
     //method for loading in other managers
@@ -49,10 +69,40 @@ public class GameManager : MonoBehaviour
     {
         //load in:
         //Event Manager 
+        if (eventManagerPref != null)
+        {
+            Instantiate(eventManagerPref);
+        }
         //MicroGameManager 
-        //UIManager 
-        //HighScoreManager 
+        if (microGameManagerPref != null)
+        {
+            Instantiate(microGameManagerPref);
+        }
         //AudioManager
+        if (audioManagerPref != null) 
+        { 
+            Instantiate(audioManagerPref); 
+        }
+        //UIManager 
+        if (uiManagerPref != null)
+        {
+            Instantiate(uiManagerPref);
+        }
+        //HighScoreManager
+        if (highScoreManagerPref != null)
+        {
+            Instantiate(highScoreManagerPref);
+        }
+    }
+
+    public void LoadSettings()
+    {
+        //load the settings from file and plug them into the SettingsManager
+    }
+
+    private void SaveSettings()
+    {
+        //save the settings on the 'SettingsManager'
     }
 
 
@@ -72,9 +122,14 @@ public class GameManager : MonoBehaviour
         //method for invoking the open high score screen event 
     }
 
+    public void PlayOneGame(int gameID)
+    {
+        gameMode = GameMode.Singleplay;
+        EventManager.playOneGameEvent(gameID);
+    }
 
     //new game method 
-    private void NewGame(int _gameMode) //takes in variable for game type 
+    public void StartPlaylist(int _gameMode) //takes in variable for game type 
     {
         //sets the enum variable game type based on the game type variable and then invokes the ‘NewGame’ method and pass it one of three game modes
         switch (_gameMode)
@@ -87,11 +142,7 @@ public class GameManager : MonoBehaviour
             case 1:
                 gameMode = GameMode.WholePlaylist;
                 //invoke the NewGameStart event and pass it 1 for every game once
-                break;
-            case 2:
-                gameMode = GameMode.Singleplay;
-                //invoke the PlayOneGame event and pass it the id of the game to be played
-                break;
+                break;            
         }
     }
 
@@ -121,6 +172,7 @@ public class GameManager : MonoBehaviour
             {
                 //invoke ‘UpdateHighScore’ event and invoke ‘NextGameRandom’ event
                 Debug.Log("You won the game!");
+                EventManager.returnMainMenuEvent();
             }
             else if(gameMode == GameMode.WholePlaylist) //if entire playlist
             {
@@ -145,7 +197,8 @@ public class GameManager : MonoBehaviour
                 else
                 {
                     //No? Invoke ‘GameOver’ event
-                    Debug.Log("You won the game!");
+                    Debug.Log("You lost the game!");
+                    EventManager.returnMainMenuEvent();
                 }
             }
             else if (gameMode == GameMode.WholePlaylist) //if entire playlist

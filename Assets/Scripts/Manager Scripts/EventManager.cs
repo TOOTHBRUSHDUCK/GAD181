@@ -91,4 +91,17 @@ public class EventManager : MonoBehaviour
     public delegate void ThreeStrikesGameOver();
     public static ThreeStrikesGameOver threeStrikesGameOverEvent;
 
+    //delegant and event for quitting the game
+    public delegate void QuitGame();
+    public static QuitGame quitGameEvent;
+
+    //delegate + event for saving settings
+    public delegate void SaveSettings();
+    public static SaveSettings saveSettingsEvent;
+
+
+    //delegate + event for loading settings
+    public delegate void LoadSettings();
+    public static LoadSettings loadSettingsEvent;
+
 }

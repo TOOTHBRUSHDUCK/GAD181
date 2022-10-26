@@ -9,7 +9,7 @@ public class MicroGameManager : MonoBehaviour
     public static MicroGameManager Instance;
 
     //list of integers for storing the current 'playlist'
-    [SerializeField] private List<int> currentPlaylist = new List<int>();
+    [SerializeField] private List<int> randomPlaylist = new List<int>();
 
     [SerializeField] private List<int> allMicroGames = new List<int>();
 
@@ -17,6 +17,9 @@ public class MicroGameManager : MonoBehaviour
     private int currentGameIndex;    
 
     [SerializeField] int microGameCount;
+
+
+
 
     private void OnEnable()
     {
@@ -30,18 +33,32 @@ public class MicroGameManager : MonoBehaviour
             //if there is one then destroy this object
             Destroy(gameObject);
         }        
+
+        //PLACEHOLDER FOR TESTING
+        currentGameIndex = 1;
     }
+
+
+    private void Awake()
+    {
+        
+    }
+
 
     private void Start()
     {
+        //subscribe to the PlayOneGame event
+        EventManager.playOneGameEvent += LaunchMicroGame;
+        //subscribe to the StartGame event
+        EventManager.newGameStartEvent += LaunchPlaylist;
         //in the start function subscribe to the following events:
         //NextGameRandom
-
+        EventManager.nextGameRandomEvent += NextGameRandom;
         //NextGameWholePlaylist
         //ReturnMainMenu
         EventManager.returnMainMenuEvent += CloseMicroGame;
-        //PlayOneGame
 
+        //PLACEHOLDER FOR TESTING
         GenerateRandomGameList();
     }
 
@@ -52,6 +69,26 @@ public class MicroGameManager : MonoBehaviour
     private void LaunchMicroGame(int gameIndex)
     {
         SceneManager.LoadScene(gameIndex, LoadSceneMode.Additive);
+        currentGameIndex = gameIndex;
+    }
+
+    private void LaunchPlaylist(int playList)
+    {
+        if(playList == 0) //this will be for random three strikes mode
+        {
+            EventManager.closeMenuEvent(); //close any open menus
+            GenerateRandomGameList(); //create the initial random playlist
+            currentGameIndex = 0; //set the currentGameIndex to be 0
+            //LaunchMicroGame(currentPlaylist[currentGameIndex]);
+            Debug.Log("Launching Microgame " + randomPlaylist[currentGameIndex]);
+        }
+        if(playList == 1) //launch the whole playlist mode
+        {
+            EventManager.closeMenuEvent(); //close any open menus
+            currentGameIndex = 0; //set the current game index to be zero
+            //LaunchPlaylist(allMicroGames[currentGameIndex]);
+            Debug.Log("Launching Microgame " + allMicroGames[currentGameIndex]);
+        }
     }
 
     //method for closing a microgame (unloading the scene) taking in an integer for the 'current microgame'
@@ -62,14 +99,34 @@ public class MicroGameManager : MonoBehaviour
 
     //method for generating a random list of microgames from all microgame indexes
     private void GenerateRandomGameList()
-    {
+    {        
+        randomPlaylist.Clear(); 
+        
 
+        //temporary list equal to regular list
+        List<int> tempPlaylist = new List<int>();
+        //add all the microgames to the temporary playlist
+        tempPlaylist.AddRange(allMicroGames);
+
+        //iterate a number of times equal to the allMicroGames list
         for(int x = 0; x < allMicroGames.Count; x++)
         {
+            int ran = Random.Range(0, tempPlaylist.Count); //generate random number between 0 and length of temporary playlist
+            //add the randomly selected micrograme to the random list
+            randomPlaylist.Add(tempPlaylist[ran]);
+            //remove the randomly selected microgame from the temporary list
+            tempPlaylist.RemoveAt(ran);
+        }
+               
+            
+        //deprecated bad algorithm, keeping for reference - Scotch
+        /*for(int x = 0; x < allMicroGames.Count; x++)
+        {
             int ran = Random.Range(0, allMicroGames.Count);
-            if (!currentPlaylist.Contains(ran))
+            ran++;
+            if (!randomPlaylist.Contains(ran))
             {
-                currentPlaylist.Add(ran);
+                randomPlaylist.Add(ran);
             }
             else
             {
@@ -79,10 +136,41 @@ public class MicroGameManager : MonoBehaviour
                     x = 0;
                 }
             }
+        }*/
+    }
+
+    private void NextGameRandom()
+    {
+        //check if the game currently being played is the last one in the entire list of random games
+        if (currentGameIndex != randomPlaylist[randomPlaylist.Count]) 
+        {
+            //increase the index of the current microgame by one
+            currentGameIndex++;
+            //launch the next microgame in that list
+            LaunchMicroGame(randomPlaylist[currentGameIndex]);
+        }
+        else
+        {
+            //re-scramble the list of microgames
+            GenerateRandomGameList();
+
+            currentGameIndex = 0;
+            LaunchMicroGame(randomPlaylist[currentGameIndex]);
         }
     }
 
-    //method for generating a list of microgames in the default order
+    private void NextGameWholePlayList()
+    {
+        if(currentGameIndex != allMicroGames[allMicroGames.Count])
+        {
+            currentGameIndex++;
+            LaunchMicroGame(allMicroGames[currentGameIndex]);
+        }
+        else
+        {
+            EventManager.returnMainMenuEvent();
+        }
+    }
 
     
     private void OnDestroy()
