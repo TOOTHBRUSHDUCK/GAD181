@@ -2,19 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Timer : MonoBehaviour
+public class Timer1 : MonoBehaviour
 {
    //to have a timer counting down 
    //when it receaches zero you lose 
-    public float timer = 10f;
+    public float timer1 = 10f;
     public void Update()
     {
-        timer -= Time.deltaTime;
-        Debug.Log(timer);
+        timer1 -= Time.deltaTime;
+        Debug.Log(timer1);
 
-        if (timer <= 0)
+        if (timer1 <= 0)
         {
-            Debug.Log("you lose");
+            Debug.Log("win");
         }
 
 
