@@ -104,17 +104,17 @@ public class GameManager : MonoBehaviour
 
     public void LoadSettings()
     {
-        //load the settings from file and plug them into the SettingsManager
+        //load the settings from file and plug them into the AudioManager
     }
 
     private void SaveSettings()
     {
-        //save the settings on the 'SettingsManager'
+        //save the settings on the 'AudioManager'
     }
 
 
     //method for quitting game 
-    private void QuitGame()
+    public void QuitGame()
     {
         Application.Quit();
     }
