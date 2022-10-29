@@ -5,13 +5,13 @@ using System.Linq;
 using UnityEngine;
 using TMPro;
 
-public class IB_PipeTurn_PipeManager : MonoBehaviour
+public class PipeManager_Scotch : MonoBehaviour
 {
     //variable referencing the text on the UI
     [SerializeField] TMP_Text timerText;
 
     //current pipe variable
-    private IB_PipeTurn_PipeTurner currentPipe;
+    private PipeTurner_Scotch currentPipe;
 
     //reference to material of the current pipe
     private MeshRenderer pipeRenderer;
@@ -21,13 +21,13 @@ public class IB_PipeTurn_PipeManager : MonoBehaviour
     [SerializeField] Material normPipeMat;
 
     //list of all pipes
-    [SerializeField] private List<IB_PipeTurn_PipeTurner> pipeTurners = new List<IB_PipeTurn_PipeTurner>();
+    [SerializeField] private List<PipeTurner_Scotch> pipeTurners = new List<PipeTurner_Scotch>();
 
     //integer to track the index of the current pipe
     private int pipeIndex;    
 
     //the variable for the singleton
-    public static IB_PipeTurn_PipeManager instance;
+    public static PipeManager_Scotch instance;
 
     //float for timer
     private float timer;
@@ -41,7 +41,7 @@ public class IB_PipeTurn_PipeManager : MonoBehaviour
         }        
 
         //set the initial value for the timer
-        timer = 10f;
+        timer = 100f;
     }
 
     private void Awake()
@@ -50,7 +50,7 @@ public class IB_PipeTurn_PipeManager : MonoBehaviour
         GameObject[] gameObjects = GameObject.FindGameObjectsWithTag("Pipe");
         for(int i = 0; i < gameObjects.Length; i++)
         {
-            if(gameObjects[i].TryGetComponent<IB_PipeTurn_PipeTurner>(out currentPipe))
+            if(gameObjects[i].TryGetComponent<PipeTurner_Scotch>(out currentPipe))
             {
                 pipeTurners.Add(currentPipe);
             }
@@ -63,7 +63,7 @@ public class IB_PipeTurn_PipeManager : MonoBehaviour
         currentPipe = pipeTurners[0];
         pipeIndex = 0;
         //setting the material of the current pipe to be the 'selected' material
-        pipeRenderer = currentPipe.GetComponent<MeshRenderer>();    
+        pipeRenderer = currentPipe.GetComponentInChildren<MeshRenderer>();    
         pipeRenderer.material = currentPipeMat;
     }
 
@@ -117,17 +117,17 @@ public class IB_PipeTurn_PipeManager : MonoBehaviour
     //boolean method for checking if all pipes are aligned
     private bool PipeTurnWinCheck()
     {
-        //Debug.Log("I'm working");
+        Debug.Log("I'm working");
         //iterate through all pipes in list of pipes and call the 'check aligned' method
         for (int i = 0; i < pipeTurners.Count; i++)
         {
             if (pipeTurners[i].CheckAligned() == false)
             {
-                //Debug.Log("Not all pipes aligned");
+                Debug.Log("Not all pipes aligned");
                 return false;
             }            
         }
-        //Debug.Log("All pipes aligned");
+        Debug.Log("All pipes aligned");
         return true;        
         //if none of the pipes return false: return true on this method
     }
@@ -182,7 +182,7 @@ public class IB_PipeTurn_PipeManager : MonoBehaviour
             }
         }
         //once the pipe has switched, update the piperenderer variable to be the meshrenderer on the current pipe then change it's material
-        pipeRenderer = currentPipe.GetComponent<MeshRenderer>();
+        pipeRenderer = currentPipe.GetComponentInChildren<MeshRenderer>();
         pipeRenderer.material = currentPipeMat;
     }
 }

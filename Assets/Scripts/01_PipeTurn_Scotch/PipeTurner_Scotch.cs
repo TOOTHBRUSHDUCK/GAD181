@@ -2,13 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IB_PipeTurn_PipeTurner : MonoBehaviour
+public class PipeTurner_Scotch : MonoBehaviour
 {
     //reference to 'positive' game object at front end
     private GameObject posNode;
 
     //pipe is aligned boolean variable
     private bool aligned = false;
+
+    [SerializeField] MeshRenderer piperender;
        
 
     private void Awake()
