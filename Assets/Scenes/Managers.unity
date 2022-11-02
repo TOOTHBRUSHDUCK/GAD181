@@ -615,7 +615,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   randomPlaylist: 
-  allMicroGames: 0100000002000000030000000400000005000000
+  allMicroGames: 010000000200000003000000040000000500000006000000
   microGameCount: 5
 --- !u!1 &663071760
 GameObject:

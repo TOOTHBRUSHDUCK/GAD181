@@ -26,4 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/DummyScenes for Testing/Dummy Scene (1) 4.unity
     guid: 1d08e2a26eb1dd142856514a489e85d4
+  - enabled: 1
+    path: Assets/Scenes/07_FlappyBird_Scotch.unity
+    guid: 8463f21a525d41f4eb6cc2eb1cdde3be
   m_configObjects: {}
