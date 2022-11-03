@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class Umbrella_RainCollision : MonoBehaviour
 {
     //assign this script to particle system
+    [SerializeField] Umbrella_DrenchBar drenchBar;
     void Start()
     {
         
@@ -19,6 +22,7 @@ public class Umbrella_RainCollision : MonoBehaviour
         if(other.tag == "Player")
         {   
             other.GetComponent<Renderer>().material.color = Color.red;
+            drenchBar.IncreaseDrenchValue();
             Debug.Log("You have hit the player");
         }
     }
