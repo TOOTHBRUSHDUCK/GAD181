@@ -1,10 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Umbrella_Controller : MonoBehaviour
 {
-    [SerializeField] private float rotateSpeed;
+    public UnityEvent UmbrellaUp;
+    public UnityEvent UmbrellaDown;
+    public UnityEvent UmbrellaLeft;
+    public UnityEvent UmbrellaRight;
     void Start()
     {
         
@@ -12,26 +16,26 @@ public class Umbrella_Controller : MonoBehaviour
 
     void Update()
     {
-        UmbrellaMovement();
+        UmbrellaControl();
     }
-
-    private void UmbrellaMovement()
+    void UmbrellaControl()
     {
         if(Input.GetKey(KeyCode.W) == true)
         {
-            this.transform.RotateAround(this.transform.position, Vector3.left, -rotateSpeed * Time.deltaTime);
+            UmbrellaUp.Invoke();
         }
         if(Input.GetKey(KeyCode.S) == true)
         {
-            this.transform.RotateAround(this.transform.position, Vector3.left, rotateSpeed * Time.deltaTime);
+            UmbrellaDown.Invoke();
         }
         if(Input.GetKey(KeyCode.A) == true)
         {
-            this.transform.RotateAround(this.transform.position, Vector3.forward, rotateSpeed * Time.deltaTime);
+            UmbrellaLeft.Invoke();
         }
         if(Input.GetKey(KeyCode.D) == true)
         {
-            this.transform.RotateAround(this.transform.position, Vector3.forward, -rotateSpeed * Time.deltaTime);
+            UmbrellaRight.Invoke();
         }
+        
     }
 }

@@ -2,15 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class Umbrella_Event : MonoBehaviour
 {
-    public UnityEvent UmbrellaUp;
-    public UnityEvent UmbrellaDown;
-    public UnityEvent UmbrellaLeft;
-    public UnityEvent UmbrellaRight;
     public UnityEvent GameStart;
-    [SerializeField] bool gameOn = false; //turn on by start button
+    public UnityEvent WinGameUI;
+    public UnityEvent LoseGameUI;
+    [SerializeField] Umbrella_Timer timerBar;
+    [SerializeField] Slider drenchBar;
+    [SerializeField] bool gameOn = false; //turn on running TurnGameOn function by start button
     void Start()
     {
         gameOn = false;
@@ -18,28 +19,8 @@ public class Umbrella_Event : MonoBehaviour
 
     void Update()
     {
-        UmbrellaControl();
         StartGame();
-    }
-    void UmbrellaControl()
-    {
-        if(Input.GetKey(KeyCode.W) == true)
-        {
-            UmbrellaUp.Invoke();
-        }
-        if(Input.GetKey(KeyCode.S) == true)
-        {
-            UmbrellaDown.Invoke();
-        }
-        if(Input.GetKey(KeyCode.A) == true)
-        {
-            UmbrellaLeft.Invoke();
-        }
-        if(Input.GetKey(KeyCode.D) == true)
-        {
-            UmbrellaRight.Invoke();
-        }
-        
+        GameState();
     }
     void StartGame()
     {
@@ -51,6 +32,17 @@ public class Umbrella_Event : MonoBehaviour
     public void TurnGameOn()
     {
         gameOn = true;
+    }
+    void GameState()
+    {
+        if(timerBar.timeLeft == 0 && drenchBar.value<100)
+        {
+            WinGameUI.Invoke();
+        }
+        else if(timerBar.timeLeft >= 0 && drenchBar.value == 100)
+        {
+            LoseGameUI.Invoke();
+        }
     }
 
 }

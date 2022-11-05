@@ -13,12 +13,12 @@ public class Umbrella_RainSpawn : MonoBehaviour
     public bool spawnLimiter = false;
     void Start()
     {
-        
+        StartRainSpawn();
     }
 
     void Update()
     {
-        InvokeRepeating("RollRain", 0.0f, spawnInterval);  
+        
     }
     private void RollRain()
     {
@@ -43,5 +43,14 @@ public class Umbrella_RainSpawn : MonoBehaviour
             rightRain.SetActive(true);
             spawnLimiter = true;
         }
+    }
+    private void StartRainSpawn()
+    {
+        InvokeRepeating("RollRain", 0.0f, spawnInterval);  
+    }
+
+    public void CancelRainSpawn()
+    {
+        CancelInvoke("RollRain");
     }
 }
