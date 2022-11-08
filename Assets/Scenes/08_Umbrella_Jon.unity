@@ -21916,7 +21916,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 06_DriveInTraffic_Jon
+          m_StringArgument: 02_CookEgg_Jon
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 397017998}
@@ -49524,8 +49524,8 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 1
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -49584,7 +49584,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 354.5, y: -7.5913}
+  m_AnchoredPosition: {x: -0.000030518, y: -57.591}
   m_SizeDelta: {x: 245.9526, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2077004394 stripped
