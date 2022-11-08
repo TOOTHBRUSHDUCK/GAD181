@@ -5,6 +5,7 @@ using UnityEngine;
 public class Umbrella_DestroyRain : MonoBehaviour
 {
     [SerializeField] private Umbrella_RainSpawn rainSpawn;
+    [SerializeField] private float despawnInterval = 1.4f;
     void Start()
     {
         
@@ -20,7 +21,7 @@ public class Umbrella_DestroyRain : MonoBehaviour
 
     IEnumerator DestroyRain()
     {
-        yield return new WaitForSeconds(2.4f);
+        yield return new WaitForSeconds(despawnInterval);
         this.gameObject.SetActive(false);
         rainSpawn.spawnLimiter = false;
     }

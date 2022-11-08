@@ -6,6 +6,7 @@ using TMPro;
 
 public class CookEgg_VolumeSaveController : MonoBehaviour
 {
+    //assign this script to empty object called volume Controller that placed under Audio parent
     [SerializeField] private Slider volumeSlider = null;
     [SerializeField] private TextMeshProUGUI volumeTextUI = null;
     

@@ -6,6 +6,7 @@ using TMPro;
 
 public class CookEgg_Timer : MonoBehaviour
 {
+    //assign to timer panel under main canvas
     public float timeLeft;
     public bool timerOn = false;
     public TextMeshProUGUI timerTxt;
