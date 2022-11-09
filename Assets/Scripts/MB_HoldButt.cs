@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MB_HoldButt : MonoBehaviour
 {
-    //This covers: Press a button in a window of time, hold a button for a duration, do nothing for a timer, etc.
+    //This covers: Press a button in a window of time, hold a button for a duration, do nothing for a timer, mash a button, press any button, etc.
     //All time considered in engine ticks, ie FixedUpdate ticks. 50 occur a second, so 50 = 1s
     [SerializeField] protected int initialWait; //Initial time where pressing a key will not succeed.
     [SerializeField] protected int endWait; //Time at end where input will not succeed
@@ -16,7 +16,7 @@ public class MB_HoldButt : MonoBehaviour
     [SerializeField] protected bool failTime; //Will the player fail for the timer running out?
     [SerializeField] protected bool resetHoldOnRelease; //Is the hold timer reset on releasing the key early?
     [SerializeField] protected int score; //How much score player will gain
-    [SerializeField] protected bool mash; //Is this a button masher? If so, should not use resetHoldOnRelease unless you have a crazy plan.
+    [SerializeField] protected bool mash; //Is this a button masher? If so, should not use resetHoldOnRelease unless you have a crazy plan. Made assuming no target frame rate.
 
     private protected int timer = 0; //tick up by 1 every fixed update
     [SerializeField] private protected int heldTime = 0; //How long input held at correct time
@@ -31,7 +31,7 @@ public class MB_HoldButt : MonoBehaviour
             {
                if(Input.GetKeyDown(desiredInput))
                 {
-                    //isHeld = true;
+                    isHeld = true;
                     heldTime++;
                     DoOnHold();
                 }
@@ -58,7 +58,7 @@ public class MB_HoldButt : MonoBehaviour
             {
                if(Input.anyKeyDown)
                 {
-                    //isHeld = true;
+                    isHeld = true;
                     heldTime++;
                     DoOnHold();
                 }
@@ -87,7 +87,7 @@ public class MB_HoldButt : MonoBehaviour
         timer++;
     }
 
-    public virtual void CheckHold() //Meat of this parent class
+    public virtual void CheckHold() //Meat of this parent class. Significantly less used in Mashers, but still checks for losing the game.
     {
         if(timer >= timeLimit) //Make sure not overtime, if you are, then using the appropriate ending.
         {
@@ -102,12 +102,12 @@ public class MB_HoldButt : MonoBehaviour
         }
         if(isHeld) //Very simple, while holding the input tick up the hold time, or fail if it's too early or late and meant to
         {
-            if(timer >= initialWait && timer <= (timeLimit - endWait))
+            if(timer >= initialWait && timer <= (timeLimit - endWait) && !mash)
             {
                 heldTime++;
                 DoOnHold();
             }
-            else if(timer < initialWait && failEarly)
+            else if(timer < initialWait && failEarly) //can still fail early or late in a masher
             {
                 Fail();
             }
@@ -126,7 +126,7 @@ public class MB_HoldButt : MonoBehaviour
         }
     }
 
-    public virtual void DoOnHold()
+    public virtual void DoOnHold() //Run while button is held, or once when a button is pressed in a masher
     {
         //Fill in in inheritors
         this.transform.localScale += new Vector3(0.01f,0.01f,0.01f);
@@ -136,11 +136,17 @@ public class MB_HoldButt : MonoBehaviour
     {
         //call fail event
         Debug.Log("Fail");
+        //Application.Quit();
+        Application.LoadLevel(Application.loadedLevel);
+        //UnityEditor.EditorApplication.isPlaying = false;
     }
 
     public virtual void Win()
     {
         //call win event
         Debug.Log("Win");
+        //Application.Quit();
+        Application.LoadLevel(Application.loadedLevel);
+        //UnityEditor.EditorApplication.isPlaying = false;
     }
 }
