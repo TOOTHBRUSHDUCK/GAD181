@@ -31,6 +31,6 @@ public class MH_Navigator : MonoBehaviour
      //Call this to quit the game when in the editor (NOTE: this will not work if you build the executable)
     void QuitGame() 
     {
-        UnityEditor.EditorApplication.isPlaying = false;
+        //UnityEditor.EditorApplication.isPlaying = false;
     }
 }
