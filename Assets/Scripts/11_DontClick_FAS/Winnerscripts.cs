@@ -5,11 +5,13 @@ using UnityEngine;
 public class Winnerscript : MonoBehaviour
 {
     public float winnerscript;
-    void Update()
+    public void Update()
+    function FixedUpdate()
     {
         Debug.Log(winnerscript);
-        if (Input.anyKeyDown)
+        if (Input.anyKeyDown) ;
         {
+            Input.anyKeyDown = true;
             Debug.Log("you lose");
         }
     }
