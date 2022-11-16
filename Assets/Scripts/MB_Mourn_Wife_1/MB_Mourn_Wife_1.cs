@@ -14,7 +14,7 @@ public class MB_Mourn_Wife_1 : MB_HoldButt
         if(heldTime == 1)
         {
             //Reset Igor here
-            flower = Instantiate(mainFlower, (transform.position + new Vector3(1f,0f,0.7f)), Quaternion.identity);
+            flower = Instantiate(mainFlower, (transform.position + new Vector3(1f,0.5f,0.7f)), Quaternion.identity);
             rightIgor();
         }
         else if(heldTime > 1 && heldTime <= desiredHold)
@@ -90,7 +90,7 @@ public class MB_Mourn_Wife_1 : MB_HoldButt
         arm.transform.localRotation = Quaternion.identity * Quaternion.AngleAxis(-90, Vector3.up);
         arm.transform.localPosition = new Vector3(-0.1f, 0f, 0.5f);
         leg.transform.rotation = Quaternion.identity * Quaternion.AngleAxis(90, Vector3.up);
-        flower.transform.position = new Vector3(flower.transform.position.x,flower.transform.position.y + Random.Range(-0.50f,0.50f),-1f);
+        flower.transform.position = new Vector3(flower.transform.position.x,flower.transform.position.y + Random.Range(-0.50f,0.50f),(-1f + Random.Range(-0.20f,0.20f)));
         flower.transform.rotation *= Quaternion.AngleAxis(Random.Range(-40f,40f), Vector3.up);
     }
 
