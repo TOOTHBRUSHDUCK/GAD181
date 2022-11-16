@@ -15,6 +15,7 @@ public class Timer : MonoBehaviour
         if (timer <= 0)
         {
             Debug.Log("you lose");
+            EventManager.microGameCompleteEvent(false);
         }
 
 
