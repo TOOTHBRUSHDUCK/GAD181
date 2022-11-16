@@ -10,7 +10,7 @@ public class Timer : MonoBehaviour
     public void Update()
     {
         timer -= Time.deltaTime;
-        Debug.Log(timer);
+        //Debug.Log(timer);
 
         if (timer <= 0)
         {
