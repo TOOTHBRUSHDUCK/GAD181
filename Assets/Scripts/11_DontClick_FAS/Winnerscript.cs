@@ -5,8 +5,8 @@ using UnityEngine;
 public class Winnerscript : MonoBehaviour
 {
     //public float winnerscript;
-    public void Update() { }
-    public void FixedUpdate()
+  
+    public void Update()
     {
         //Debug.Log(winnerscript);
         if (Input.anyKeyDown)
