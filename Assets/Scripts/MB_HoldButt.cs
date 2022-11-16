@@ -137,7 +137,7 @@ public class MB_HoldButt : MonoBehaviour
         //call fail event
         Debug.Log("Fail");
         //Application.Quit();
-        Application.LoadLevel(Application.loadedLevel);
+        EventManager.microGameCompleteEvent(false);
         //UnityEditor.EditorApplication.isPlaying = false;
     }
 
@@ -146,7 +146,7 @@ public class MB_HoldButt : MonoBehaviour
         //call win event
         Debug.Log("Win");
         //Application.Quit();
-        Application.LoadLevel(Application.loadedLevel);
+        EventManager.microGameCompleteEvent(true);
         //UnityEditor.EditorApplication.isPlaying = false;
     }
 }

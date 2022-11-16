@@ -7,17 +7,29 @@ public class MB_Mourn_Wife_1 : MB_HoldButt
     [SerializeField] private GameObject flower;
     [SerializeField] private GameObject arm;
     [SerializeField] private GameObject leg;
+    [SerializeField] private GameObject mainFlower;
 
     public override void DoOnHold()
     {
         if(heldTime == 1)
         {
             //Reset Igor here
+            flower = Instantiate(mainFlower, (transform.position + new Vector3(1f,0f,0.7f)), Quaternion.identity);
             rightIgor();
         }
         else if(heldTime > 1 && heldTime <= desiredHold)
         {
-
+            transform.rotation *= Quaternion.AngleAxis(1, Vector3.up);
+            arm.transform.localRotation *= Quaternion.AngleAxis(-0.8f, Vector3.up);
+            arm.transform.localPosition += new Vector3(0.01f, 0f, 0.01f);
+            if(heldTime < 25)
+            {
+                flower.transform.position += new Vector3(0.02f,0f,0.001f);
+            }
+            else
+            {
+                flower.transform.position += new Vector3(0.02f,0f,-0.0075f);
+            }
         }
     }
 
@@ -50,7 +62,7 @@ public class MB_Mourn_Wife_1 : MB_HoldButt
                 Fail();
             }
         }
-        else if(resetHoldOnRelease) //Actually reset the held time if told to reset the held time
+        else if(resetHoldOnRelease && gameEnded == false) //Actually reset the held time if told to reset the held time
         {
             if(heldTime > 0)
             {
@@ -76,6 +88,21 @@ public class MB_Mourn_Wife_1 : MB_HoldButt
     {
         transform.rotation = Quaternion.identity * Quaternion.AngleAxis(90, Vector3.up);
         arm.transform.localRotation = Quaternion.identity * Quaternion.AngleAxis(-90, Vector3.up);
+        arm.transform.localPosition = new Vector3(-0.1f, 0f, 0.5f);
         leg.transform.rotation = Quaternion.identity * Quaternion.AngleAxis(90, Vector3.up);
+        flower.transform.position = new Vector3(flower.transform.position.x,flower.transform.position.y + Random.Range(-0.50f,0.50f),-1f);
+        flower.transform.rotation *= Quaternion.AngleAxis(Random.Range(-40f,40f), Vector3.up);
+    }
+
+    public override void Win()
+    {
+        gameEnded = true;
+        flower.transform.position = new Vector3(flower.transform.position.x,flower.transform.position.y,-0.3f);
+        //call win event
+        Debug.Log("Win");
+        //Application.Quit();
+        EventManager.microGameCompleteEvent(true);
+        //UnityEditor.EditorApplication.isPlaying = false;
+        
     }
 }
