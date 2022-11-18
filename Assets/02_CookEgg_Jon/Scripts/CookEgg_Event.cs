@@ -14,6 +14,7 @@ public class CookEgg_Event : MonoBehaviour
     public UnityEvent RemoveButtonSignal;
     public UnityEvent gameStart;
     [SerializeField] Slider progressBar;
+    [SerializeField] GameObject PauseMenu;
     [SerializeField] Slider temperatureBar;
     [SerializeField] CookEgg_Timer timer;
     //turn on button signal after clikcing start button, turn off button when win/lose UI pops up
@@ -23,14 +24,15 @@ public class CookEgg_Event : MonoBehaviour
 
     void Start() 
     {
-        ButtonSignalOn = false;
-        gameOn = false;    
+        TurnOffButtonSignal();
+        TurnGameOn();    
     }
     void Update() 
     {
         GameState();
         Buttonsignal();
         StartGame();
+        GamePause();
     }
 
     void GameState()
@@ -53,18 +55,21 @@ public class CookEgg_Event : MonoBehaviour
     //to pop up W or S button UI to notify players which button to press 
     void Buttonsignal()
     {
-        if(temperatureBar.value<40 && ButtonSignalOn == true)
+        if(Time.timeScale != 0)
         {
-            Load_W_Button.Invoke();
-        }
-        else if(temperatureBar.value>60 && ButtonSignalOn == true)
-        {
-            Load_S_Button.Invoke();
-        }
-        else if(temperatureBar.value>40 && temperatureBar.value<60 && ButtonSignalOn == true)
-        {
-            RemoveButtonSignal.Invoke();
-        }
+            if(temperatureBar.value<40 && ButtonSignalOn == true)
+            {
+                Load_W_Button.Invoke();
+            }
+            else if(temperatureBar.value>60 && ButtonSignalOn == true)
+            {
+                Load_S_Button.Invoke();
+            }
+            else if(temperatureBar.value>40 && temperatureBar.value<60 && ButtonSignalOn == true)
+            {
+                RemoveButtonSignal.Invoke();
+            }
+        }                        
     }
     //show button signal
     public void TurnOnButtonSignal()
@@ -78,7 +83,7 @@ public class CookEgg_Event : MonoBehaviour
     }
     private void StartGame()
     {
-        if(gameOn == true)
+        if(gameOn == true && Time.timeScale != 0)
         {
             gameStart.Invoke();
         }
@@ -86,5 +91,29 @@ public class CookEgg_Event : MonoBehaviour
     public void TurnGameOn()
     {
         gameOn = true;
+    }
+        void PauseGame()
+    {
+        Time.timeScale = 0;
+        PauseMenu.SetActive(true);
+    }
+    void ResumeGame()
+    {
+        Time.timeScale = 1;
+        PauseMenu.SetActive(false);
+    }
+    void GamePause()
+    {
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            if(Time.timeScale != 0)
+            {
+                PauseGame();
+            }
+            else
+            {
+                ResumeGame();
+            }
+        }
     }
 }

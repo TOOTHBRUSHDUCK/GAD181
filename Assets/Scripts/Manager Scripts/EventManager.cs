@@ -27,7 +27,7 @@ public class EventManager : MonoBehaviour
         else
         {
             //in the event instance is not null there is already an event manager and an error should be logged for debugging.
-            Debug.LogError("There should only be one EventManager in the scene!");
+            //Debug.LogError("There should only be one EventManager in the scene!");
         }
     }
 

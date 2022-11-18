@@ -11,34 +11,39 @@ public class DriveInTraffic_Events : MonoBehaviour
     public UnityEvent gameStart;
     [SerializeField] DriveInTraffic_GoalTrigger goalTrigger;
     [SerializeField] DriveInTraffic_TrafficLight trafficLight;
+    [SerializeField] GameObject PauseMenu;
     [SerializeField] private bool gameOn; //set true by start button
     void Start()
     {
-        gameOn = false;
+        TurnGameOn();
     }
     void Update()
     {
         GameState();
         StartGame();
+        GamePause();
     }
     void GameState()
     {
-        if(trafficLight.redLight == false && goalTrigger.reachGoal == true)
+        if(Time.timeScale != 0)
         {
-            //winGameUI.Invoke();
-            EventManager.microGameCompleteEvent(true);
-            gameOn = false;
-        }
-        else if(trafficLight.redLight == true && goalTrigger.reachGoal ==false)
-        {
-            //loseGameUI.Invoke();
-            EventManager.microGameCompleteEvent(false);
-            gameOn = false;
-        }
+            if(trafficLight.redLight == false && goalTrigger.reachGoal == true)
+            {
+                //winGameUI.Invoke();
+                EventManager.microGameCompleteEvent(true);
+                gameOn = false;
+            }
+            else if(trafficLight.redLight == true && goalTrigger.reachGoal ==false)
+            {
+                //loseGameUI.Invoke();
+                EventManager.microGameCompleteEvent(false);
+                gameOn = false;
+            }
+        }        
     }
     void StartGame()
     {
-        if(gameOn == true)
+        if(gameOn == true && Time.timeScale !=0)
         {
             gameStart.Invoke();
         }
@@ -46,5 +51,33 @@ public class DriveInTraffic_Events : MonoBehaviour
     public void TurnGameOn()
     {
         gameOn = true;
+    }
+    public void TurnGameOff()
+    {
+        gameOn = false;
+    }
+        void PauseGame()
+    {
+        Time.timeScale = 0;
+        PauseMenu.SetActive(true);
+    }
+    void ResumeGame()
+    {
+        Time.timeScale = 1;
+        PauseMenu.SetActive(false);
+    }
+    void GamePause()
+    {
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            if(Time.timeScale != 0)
+            {
+                PauseGame();
+            }
+            else
+            {
+                ResumeGame();
+            }
+        }
     }
 }

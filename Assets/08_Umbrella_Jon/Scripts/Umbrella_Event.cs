@@ -11,20 +11,22 @@ public class Umbrella_Event : MonoBehaviour
     public UnityEvent LoseGameUI;
     [SerializeField] Umbrella_Timer timerBar;
     [SerializeField] Slider drenchBar;
+    [SerializeField] GameObject PauseMenu;
     [SerializeField] bool gameOn = false; //turn on running TurnGameOn function by start button
     void Start()
     {
-        gameOn = false;
+        TurnGameOn();
     }
 
     void Update()
     {
         StartGame();
         GameState();
+        GamePause();
     }
     void StartGame()
     {
-        if(gameOn == true)
+        if(gameOn == true && Time.timeScale != 0)
         {
             GameStart.Invoke();
         }
@@ -33,18 +35,45 @@ public class Umbrella_Event : MonoBehaviour
     {
         gameOn = true;
     }
+    public void TurnGameOff()
+    {
+        gameOn = false;
+    }
     void GameState()
     {
-        if(timerBar.timeLeft == 0 && drenchBar.value<100)
+        if(timerBar.timeLeft == 0 && drenchBar.value<100 && Time.timeScale != 0)
         {
             EventManager.microGameCompleteEvent(true);
             //WinGameUI.Invoke();
         }
-        else if(timerBar.timeLeft >= 0 && drenchBar.value == 100)
+        else if(timerBar.timeLeft >= 0 && drenchBar.value == 100 && Time.timeScale != 0)
         {
             EventManager.microGameCompleteEvent(false);
             //LoseGameUI.Invoke();
         }
     }
-
+    void PauseGame()
+    {
+        Time.timeScale = 0;
+        PauseMenu.SetActive(true);
+    }
+    void ResumeGame()
+    {
+        Time.timeScale = 1;
+        PauseMenu.SetActive(false);
+    }
+    void GamePause()
+    {
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            if(Time.timeScale != 0)
+            {
+                PauseGame();
+            }
+            else
+            {
+                ResumeGame();
+            }
+        }
+    }
 }
