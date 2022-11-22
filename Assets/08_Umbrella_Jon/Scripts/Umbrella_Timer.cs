@@ -31,7 +31,7 @@ public class Umbrella_Timer : MonoBehaviour
             }
             else
             {
-                Debug.Log("Time is Up!");
+                //Debug.Log("Time is Up!");
                 timeLeft = 0;
                 timerOn = false;
             }

@@ -24,7 +24,11 @@ public class Umbrella_RainCollision : MonoBehaviour
         {   
             other.GetComponent<Renderer>().material.color = Color.red;
             drenchBar.IncreaseDrenchValue();
-            Debug.Log("You have hit the player");
+            //Debug.Log("You have hit the player");
+        }
+        else
+        {
+            player.GetComponent<Renderer>().material.color = playerStartColor;
         }
 
     }
