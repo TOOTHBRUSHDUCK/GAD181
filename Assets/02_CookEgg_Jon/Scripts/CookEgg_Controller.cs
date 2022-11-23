@@ -6,14 +6,19 @@ using TMPro;
 
 public class CookEgg_Controller : MonoBehaviour
 {
+    //setting the min and max value of temperature to limit the temperature range 
     [SerializeField] private float _minValue = 0f;
     [SerializeField] private float _maxValue = 100f;
+    //temeprature change when pressing the W or S button
     [SerializeField] private float valueChange = 5f;
-    [SerializeField] private Slider slider;
+    //temperature slider reference
+    [SerializeField] private Slider tempSlider;
+    //for reference to the color change function from CookEgg_Eggcolor script attached to Egg
+    [SerializeField] private CookEgg_EggColor eggColor;
     void Start()
     {
-        slider.minValue = _minValue;
-        slider.maxValue = _maxValue;
+        tempSlider.minValue = _minValue;
+        tempSlider.maxValue = _maxValue;
     }
 
     void Update()
@@ -21,30 +26,32 @@ public class CookEgg_Controller : MonoBehaviour
         IncreaseTemperatureInput();
         DropTemperatureInput();
     }
-    //press w button to increase temperature value
+    //press w button to increase temperature value, egg colour changes in response
     public void IncreaseTemperatureInput()
     {
         if(Input.GetKeyDown("w")==true)
         {
             IncreaseTemperature();
+            eggColor.UnderCooked();
         }
     }
-    //press s button to decrease temperature value
+    //press s button to decrease temperature value, egg colour changes in response
     public void DropTemperatureInput()
     {
         if(Input.GetKeyDown("s")==true)
         {
             DropTemperature();
+            eggColor.OverCooked();
         }
     }
     //increase temperature by valuechange each time the button is pressed
     void IncreaseTemperature()
     {
-        slider.value += valueChange;
+        tempSlider.value += valueChange;
     }
     //decrease temperature by valuechange each time the button is pressed
     void DropTemperature()
     {
-        slider.value -= valueChange;
+        tempSlider.value -= valueChange;
     }
 }
