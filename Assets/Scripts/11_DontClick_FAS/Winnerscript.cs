@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class Winnerscript : MonoBehaviour
 {
-    public float winnerscript;
-    void Update()
+    //public float winnerscript;
+  
+    public void Update()
     {
-        Debug.Log(winnerscript);
+        //Debug.Log(winnerscript);
         if (Input.anyKeyDown)
-        {
+        {            
             Debug.Log("you lose");
+            EventManager.microGameCompleteEvent(false);
         }
     }
 }

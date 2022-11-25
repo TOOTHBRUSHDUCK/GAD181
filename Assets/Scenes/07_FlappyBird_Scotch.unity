@@ -833,7 +833,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aec5c55936e54d445bdf0af284944ab9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flapMultiplier: 12
+  flapMultiplier: 9
   downVelMax: -3
   inputCooldownMax: 0.01
 --- !u!65 &703106100

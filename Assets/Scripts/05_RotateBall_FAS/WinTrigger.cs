@@ -10,6 +10,7 @@ public class WinTrigger : MonoBehaviour
         if (other.gameObject.tag == "Ball")
         {
             Debug.Log ("you win");
+            EventManager.microGameCompleteEvent(true);
         }
     }
 
