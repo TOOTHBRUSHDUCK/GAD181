@@ -410,7 +410,7 @@ Transform:
   - {fileID: 554132263}
   - {fileID: 1028024794}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &228855060
 GameObject:
@@ -882,7 +882,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1269133628
 MonoBehaviour:
@@ -1300,7 +1300,7 @@ PrefabInstance:
     - target: {fileID: 9054426038343243382, guid: 99d0dfe8aad74f64492f9ab62a557c76,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9054426038343243382, guid: 99d0dfe8aad74f64492f9ab62a557c76,
         type: 3}
@@ -1601,6 +1601,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 5935036843325043895, guid: 3ac846d2e2252494badf3b96f0805ee8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5935036843325043899, guid: 3ac846d2e2252494badf3b96f0805ee8,
         type: 3}
       propertyPath: m_Pivot.x
@@ -1614,7 +1619,7 @@ PrefabInstance:
     - target: {fileID: 5935036843325043899, guid: 3ac846d2e2252494badf3b96f0805ee8,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5935036843325043899, guid: 3ac846d2e2252494badf3b96f0805ee8,
         type: 3}
@@ -1723,7 +1728,7 @@ PrefabInstance:
     - target: {fileID: 5217941219753681823, guid: 79a66ef3db5aac242ad364e2b0371dd6,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5217941219753681823, guid: 79a66ef3db5aac242ad364e2b0371dd6,
         type: 3}
@@ -1777,6 +1782,59 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 79a66ef3db5aac242ad364e2b0371dd6, type: 3}
+--- !u!1 &2085696387
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2085696389}
+  - component: {fileID: 2085696388}
+  m_Layer: 0
+  m_Name: UIUpdater
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2085696388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2085696387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 897cec69e16448d418947937c33b525a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  topPanelActive: 1
+  bottomPanelActive: 1
+  leftPanelActive: 0
+  rightPanelActive: 0
+  topText: 
+  bottomText: "Line up all the pipes! \nPress W / S to switch pipe\nPress A / D to
+    rotate pipe"
+  leftText: 
+  rightText: 
+--- !u!4 &2085696389
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2085696387}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 23.199156, y: 17.789968, z: -0.114099056}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &875017170290251236
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -72,7 +72,9 @@ public class PipeManager_Scotch : MonoBehaviour
         if(timer > 0)
         {
             timer -= Time.deltaTime;
-            timerText.text = "Time Remaining: " + (int)timer;
+            //string timeRemaining = "Time Remaining: " + (int)timer;
+            EventManager.updateUITextEvent(0, "Time Remaining: " + (int)timer);
+            //timerText.text = "Time Remaining: " + (int)timer;
         }
 
         if (Input.GetKeyDown(KeyCode.A))
