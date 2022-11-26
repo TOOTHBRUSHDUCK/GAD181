@@ -16,17 +16,17 @@ public class UIUpdater : MonoBehaviour
     [SerializeField] bool rightPanelActive;
 
     //string for top text
-    [TextArea(15, 20)]
+    [TextArea(15, 5)]
     [SerializeField] string topText;
 
     //string for bottom text
-    [TextArea(15, 20)]
+    [TextArea(15, 5)]
     [SerializeField] string bottomText;
     //string for left text
-    [TextArea(15, 20)]
+    [TextArea(15, 5)]
     [SerializeField] string leftText;
     //string for right text
-    [TextArea(15, 20)]
+    [TextArea(15, 5)]
     [SerializeField] string rightText;
 
     //on start invoke events to update the different UI elements according to the settings

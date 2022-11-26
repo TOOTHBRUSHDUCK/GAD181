@@ -15,10 +15,10 @@ public class UIManager : MonoBehaviour
     [SerializeField] GameObject[] panels;
 
     //array of text to display in UI
-    //1 is top
-    //2 is bottom
-    //3 is left
-    //4 is right
+    //0 is top
+    //1 is bottom
+    //2 is left
+    //3 is right
     [SerializeField] TMP_Text[] uiTexts;
 
     //subscribe to relevant events on EventManager
