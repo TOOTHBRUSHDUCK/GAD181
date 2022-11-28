@@ -19,7 +19,7 @@ public class CookEgg_Timer : MonoBehaviour
     void Update()
     {
       SetTimer();
-      CountDown();
+      //CountDown();
     }
 
     void SetTimer()
@@ -33,7 +33,7 @@ public class CookEgg_Timer : MonoBehaviour
             }
             else
             {
-                Debug.Log("Time is Up!");
+                //Debug.Log("Time is Up!");
                 timeLeft = 0;
                 timerOn = false;
             }
@@ -42,9 +42,13 @@ public class CookEgg_Timer : MonoBehaviour
     void UpdateTimer(float currentTime)
     {
         currentTime += 1;
-        float minutes = Mathf.FloorToInt(currentTime / 60);
-        float seconds = Mathf.FloorToInt(currentTime % 60);
-        timerTxt.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+        //original code for timer
+        //float minutes = Mathf.FloorToInt(currentTime / 60);
+        //float seconds = Mathf.FloorToInt(currentTime % 60);
+        //timerTxt.text = string.Format("TIME REMAINING: {00}", minutes, seconds);
+
+        //timer to be implemented through UI Manager and UI Updater
+        EventManager.updateUITextEvent(0, "Time Remaining: " + (int)currentTime);
     }
     //turn off the timer, default at start then turn off again when game ends
     public void TimerOff()

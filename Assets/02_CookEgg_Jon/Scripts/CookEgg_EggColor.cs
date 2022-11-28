@@ -5,8 +5,11 @@ using UnityEngine.UI;
 
 public class CookEgg_EggColor : MonoBehaviour
 {
+    //assign the default colour of the egg when CookRight
     public Color startcolor;
+    //assign colour of the egg when overcooked
     [SerializeField] public Color decreaseCookingTempColor;
+    //assign colour of the egg when overcooked
     [SerializeField] public Color increaseCookingtempColor;
     [SerializeField] private CookEgg_ProgressBar progressBar;
     [SerializeField] private Slider temperatureSlider;
@@ -17,34 +20,27 @@ public class CookEgg_EggColor : MonoBehaviour
     }
     void Update()
     {
-       CookRight();
+        UnderCooked();
+        CookRight();
+        OverCooked();
     }
-    //set default color value of the eff
+    //declare the startcolor as the default color value of the egg
     void NotCooking()
     {
         startcolor = GetComponent<Renderer>().material.color;
-        //cookingColor = new Color(1f, 0.67f, 0.11f, 1);
     }
     //color when below minTempValue
     public void UnderCooked()
     {
-        GetComponent<Renderer>().material.color = increaseCookingtempColor;
-        
-        //this is the original code in response to UI
-        /*
         if(temperatureSlider.value < progressBar.minTempValue)
         {
-            GetComponent<Renderer>().material.color = startcolor;
+            GetComponent<Renderer>().material.color = increaseCookingtempColor;
         }
-        */
+    
     }
-    //color when between minTempValue nad maxTempValue
+    //color when between minTempValue and maxTempValue
     public void CookRight()
     {
-        //GetComponent<Renderer>().material.color = startcolor;
-
-        //this is the original code in response to UI
-        
         if(temperatureSlider.value > progressBar.minTempValue && temperatureSlider.value < progressBar.maxTempValue)
         {
             GetComponent<Renderer>().material.color = startcolor;
@@ -54,15 +50,10 @@ public class CookEgg_EggColor : MonoBehaviour
     //color when above maxTempValue
     public void OverCooked()
     {
-        GetComponent<Renderer>().material.color = decreaseCookingTempColor;
-
-        //this is the original code in response to UI
-        /*
         if(temperatureSlider.value > progressBar.maxTempValue)
         {
             GetComponent<Renderer>().material.color = decreaseCookingTempColor;
         }
-        */
     }
  
 }

@@ -7,7 +7,7 @@ using TMPro;
 public class Umbrella_DrenchBar : MonoBehaviour
 {
     [SerializeField] Slider drenchSlider;
-    [SerializeField] float drenchIncreaseValue;
+    [SerializeField] float decreaseDrenchValue;
     [SerializeField] TextMeshProUGUI drenchValueUI;
     [SerializeField] bool drenchBarOn = false;
     void Start()
@@ -21,7 +21,7 @@ public class Umbrella_DrenchBar : MonoBehaviour
     public void IncreaseDrenchValue()
     {   if(drenchBarOn == true)
         {
-            drenchSlider.value += drenchIncreaseValue;
+            drenchSlider.value -= decreaseDrenchValue;
         }      
     }
     public void UpdateDrenchBarText(float drenchValue)

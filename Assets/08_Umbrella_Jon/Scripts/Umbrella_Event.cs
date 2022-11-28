@@ -41,12 +41,12 @@ public class Umbrella_Event : MonoBehaviour
     }
     void GameState()
     {
-        if(timerBar.timeLeft == 0 && drenchBar.value<100 && Time.timeScale != 0)
+        if(timerBar.timeLeft == 0 && drenchBar.value > 0 && Time.timeScale != 0)
         {
             EventManager.microGameCompleteEvent(true);
             //WinGameUI.Invoke();
         }
-        else if(timerBar.timeLeft >= 0 && drenchBar.value == 100 && Time.timeScale != 0)
+        else if(timerBar.timeLeft >= 0 && drenchBar.value < 1 && Time.timeScale != 0)
         {
             EventManager.microGameCompleteEvent(false);
             //LoseGameUI.Invoke();
