@@ -3875,7 +3875,7 @@ MonoBehaviour:
   _minValue: 0
   _maxValue: 100
   valueChange: 10
-  tempSlider: {fileID: 0}
+  tempSlider: {fileID: 1193522380}
 --- !u!114 &1193522383
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3888,7 +3888,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46361544466496f4ab2d0300a7d5c419, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slider: {fileID: 1193522380}
+  tempSlider: {fileID: 1193522380}
   sliderText: {fileID: 1339020420}
   tempertureDrop: 10
   tempDropRate: 1
