@@ -14,7 +14,6 @@ public class CookEgg_Controller : MonoBehaviour
     //temperature slider reference
     [SerializeField] private Slider tempSlider;
     //for reference to the color change function from CookEgg_Eggcolor script attached to Egg
-    [SerializeField] private CookEgg_EggColor eggColor;
     void Start()
     {
         tempSlider.minValue = _minValue;
@@ -32,7 +31,6 @@ public class CookEgg_Controller : MonoBehaviour
         if(Input.GetKeyDown("w")==true)
         {
             IncreaseTemperature();
-            eggColor.UnderCooked();
         }
     }
     //press s button to decrease temperature value, egg colour changes in response
@@ -41,7 +39,6 @@ public class CookEgg_Controller : MonoBehaviour
         if(Input.GetKeyDown("s")==true)
         {
             DropTemperature();
-            eggColor.OverCooked();
         }
     }
     //increase temperature by valuechange each time the button is pressed
