@@ -13,15 +13,18 @@ public class FlappyBird_PipeMover : MonoBehaviour
     //on update:
     private void Update()
     {
-        //check whether the pipe's x position is less than -9.5
-        if(transform.position.x < -9.5)
+        if (GameManager.Instance.isPaused == false)
         {
-            //if true, send it back to 9.5
-            transform.position = resetPos;
-        }
+            //check whether the pipe's x position is less than -9.5
+            if (transform.position.x < -9.5)
+            {
+                //if true, send it back to 9.5
+                transform.position = resetPos;
+            }
 
-        //move the pipe left at the pipe movement rate
-        transform.position += new Vector3(pipeMoveRate, 0, 0) * Time.deltaTime;
+            //move the pipe left at the pipe movement rate
+            transform.position += new Vector3(pipeMoveRate, 0, 0) * Time.deltaTime;
+        }
     }
 
    

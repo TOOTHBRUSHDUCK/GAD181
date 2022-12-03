@@ -36,6 +36,8 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
         }
+
+        isPaused = false;
     }
 
 
@@ -112,7 +114,6 @@ public class GameManager : MonoBehaviour
         //save the settings on the 'AudioManager'
     }
 
-
     //method for quitting game 
     public void QuitGame()
     {
@@ -158,16 +159,18 @@ public class GameManager : MonoBehaviour
     }
 
     //method for pausing game and invoking the OpenPauseMenu event 
-    private void PauseGame()
+    public void PauseGame()
     {
         isPaused = true;
+        //Time.timeScale = 0;
         //invoke the OpenPauseMenu event
     }
 
     //method for unpausing game and invoking ‘CloseMenus’ event 
-    private void UnpauseGame()
+    public void UnpauseGame()
     {
         isPaused = false;
+        //Time.timeScale = 1;
         //invoke the CloseMenus event
         EventManager.closeMenuEvent();
     }
@@ -226,5 +229,10 @@ public class GameManager : MonoBehaviour
                 EventManager.returnMainMenuEvent();
             }
         }
+    }
+
+    public void MainMenu()
+    {
+        EventManager.returnMainMenuEvent();
     }
 }
