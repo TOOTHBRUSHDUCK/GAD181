@@ -12,7 +12,9 @@ public class CookEgg_ProgressBar : MonoBehaviour
     [SerializeField] private Slider progressSlider;
     [SerializeField] private TextMeshProUGUI progressSliderText;
     public bool progressOn = false;
+    //minimum temperature value for cooking progress to increase
     public float minTempValue;
+    //maximum temperature value for cooking progress to increase
     public float maxTempValue;
 
     void Start()
@@ -36,9 +38,9 @@ public class CookEgg_ProgressBar : MonoBehaviour
     //progress value will only increase if temperature slider value is in between minTempValue and maxTempValue
     private void ProgressChange()
     {
-        if(temperatureSlider.value > minTempValue && temperatureSlider.value <maxTempValue && progressOn == true)
+        if(temperatureSlider.value > minTempValue && temperatureSlider.value < maxTempValue && progressOn == true)
         {
-            progressSlider.value += progressIncreaseValue; 
+            progressSlider.value += progressIncreaseValue*Time.deltaTime; 
         }
     }
     //changes progress text colour in response to progress value

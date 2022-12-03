@@ -17,10 +17,10 @@ public class CookEgg_Event : MonoBehaviour
     [SerializeField] GameObject PauseMenu;
     [SerializeField] Slider temperatureBar;
     [SerializeField] CookEgg_Timer timer;
+    [SerializeField] CookEgg_ProgressBar progress;
     //turn on button signal after clikcing start button, turn off button when win/lose UI pops up
     public bool ButtonSignalOn;
     public bool gameOn;
-    //[SerializeField] bool winGame;
 
     void Start() 
     {
@@ -30,7 +30,9 @@ public class CookEgg_Event : MonoBehaviour
     void Update() 
     {
         GameState();
-        Buttonsignal();
+        W_Buttonsignal();
+        S_Buttonsignal();
+        No_Buttonsignal();
         StartGame();
         GamePause();
     }
@@ -39,44 +41,56 @@ public class CookEgg_Event : MonoBehaviour
     {
         if(progressBar.value<100 && timer.timeLeft==0)
         {
-            //winGame = false;
             //loseGameUI.Invoke();
             EventManager.microGameCompleteEvent(true);
             gameOn = false;
         }
         else if(progressBar.value==100 && timer.timeLeft>0)
         {
-            //winGame = true;
             //winGameUI.Invoke();
             EventManager.microGameCompleteEvent(false);
             gameOn = false;
         }
     }
-    //to pop up W or S button UI to notify players which button to press 
-    void Buttonsignal()
+    //to pop up W button UI to notify players which button to press 
+    void W_Buttonsignal()
     {
-        if(Time.timeScale != 0)
+        if(ButtonSignalOn == true)
         {
-            if(temperatureBar.value<40 && ButtonSignalOn == true)
+            if(temperatureBar.value <= progress.minTempValue)
             {
                 Load_W_Button.Invoke();
             }
-            else if(temperatureBar.value>60 && ButtonSignalOn == true)
+        }                        
+    }
+    //to pop up S button UI to notify players which button to press 
+    void S_Buttonsignal()
+    {
+        if(ButtonSignalOn == true)
+        {
+            if(temperatureBar.value >= progress.maxTempValue)
             {
                 Load_S_Button.Invoke();
             }
-            else if(temperatureBar.value>40 && temperatureBar.value<60 && ButtonSignalOn == true)
+        }                        
+    }
+    //Remove button UI 
+    void No_Buttonsignal()
+    {
+        if(ButtonSignalOn == true)
+        {
+            if(temperatureBar.value > progress.minTempValue && temperatureBar.value < progress.maxTempValue)
             {
                 RemoveButtonSignal.Invoke();
             }
         }                        
     }
-    //show button signal
+    //Turn on button signal function
     public void TurnOnButtonSignal()
     {
         ButtonSignalOn = true;
     }
-    //remove button signal
+    //Turn off button signal function
     public void TurnOffButtonSignal()
     {
         ButtonSignalOn = false;

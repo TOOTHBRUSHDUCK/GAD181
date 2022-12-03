@@ -32,7 +32,7 @@ public class CookEgg_EggColor : MonoBehaviour
     //color when below minTempValue
     public void UnderCooked()
     {
-        if(temperatureSlider.value < progressBar.minTempValue)
+        if(temperatureSlider.value <= progressBar.minTempValue)
         {
             GetComponent<Renderer>().material.color = increaseCookingtempColor;
         }
@@ -50,7 +50,7 @@ public class CookEgg_EggColor : MonoBehaviour
     //color when above maxTempValue
     public void OverCooked()
     {
-        if(temperatureSlider.value > progressBar.maxTempValue)
+        if(temperatureSlider.value >= progressBar.maxTempValue)
         {
             GetComponent<Renderer>().material.color = decreaseCookingTempColor;
         }
