@@ -716,7 +716,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &99696569
 RectTransform:
   m_ObjectHideFlags: 0
@@ -21873,7 +21873,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &772206734
 RectTransform:
   m_ObjectHideFlags: 0
@@ -44691,9 +44691,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1391407031}
     m_Modifications:
+    - target: {fileID: 1278473396904078, guid: 95e91f731e460d74885ff51841e1d76b, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1972005300028338, guid: 95e91f731e460d74885ff51841e1d76b, type: 3}
       propertyPath: m_Name
       value: 'Synty FX_Rain_Collision_01 '
+      objectReference: {fileID: 0}
+    - target: {fileID: 1972005300028338, guid: 95e91f731e460d74885ff51841e1d76b, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1972005300028338, guid: 95e91f731e460d74885ff51841e1d76b, type: 3}
       propertyPath: m_IsActive
@@ -56794,6 +56802,11 @@ PrefabInstance:
     - target: {fileID: 5935036842793220574, guid: 63432793282f9304e886b9355eee418d,
         type: 3}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5935036843265086208, guid: 63432793282f9304e886b9355eee418d,
+        type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5935036843265086238, guid: 63432793282f9304e886b9355eee418d,

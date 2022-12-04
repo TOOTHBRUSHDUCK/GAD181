@@ -118,7 +118,19 @@ public class CookEgg_Event : MonoBehaviour
     }
     void GamePause()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
+        if(GameManager.Instance.isPaused == true)
+        {
+            if(Time.timeScale != 0)
+            {
+                Time.timeScale = 0;
+            }
+        }
+        else
+        {
+            Time.timeScale = 1;
+        }
+        
+        /*if(Input.GetKeyDown(KeyCode.Space))
         {
             if(Time.timeScale != 0)
             {
@@ -128,6 +140,7 @@ public class CookEgg_Event : MonoBehaviour
             {
                 ResumeGame();
             }
-        }
+        }*/
     }
+    
 }
