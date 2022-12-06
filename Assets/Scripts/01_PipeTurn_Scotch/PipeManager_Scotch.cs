@@ -30,7 +30,7 @@ public class PipeManager_Scotch : MonoBehaviour
     public static PipeManager_Scotch instance;
 
     //float for timer
-    private float timer;
+    [SerializeField] private float timer;
 
     private void OnEnable()
     {
@@ -40,8 +40,6 @@ public class PipeManager_Scotch : MonoBehaviour
             instance = this;
         }        
 
-        //set the initial value for the timer
-        timer = 100f;
     }
 
     private void Awake()
@@ -74,7 +72,9 @@ public class PipeManager_Scotch : MonoBehaviour
         if(timer > 0)
         {
             timer -= Time.deltaTime;
-            timerText.text = "Time Remaining: " + (int)timer;
+            //string timeRemaining = "Time Remaining: " + (int)timer;
+            EventManager.updateUITextEvent(0, "Time Remaining: " + (int)timer);
+            //timerText.text = "Time Remaining: " + (int)timer;
         }
 
         if (Input.GetKeyDown(KeyCode.A))

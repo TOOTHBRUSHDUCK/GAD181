@@ -27,7 +27,7 @@ public class EventManager : MonoBehaviour
         else
         {
             //in the event instance is not null there is already an event manager and an error should be logged for debugging.
-            Debug.LogError("There should only be one EventManager in the scene!");
+            //Debug.LogError("There should only be one EventManager in the scene!");
         }
     }
 
@@ -103,6 +103,14 @@ public class EventManager : MonoBehaviour
     //delegate + event for loading settings
     public delegate void LoadSettings();
     public static LoadSettings loadSettingsEvent;
+
+    //delegate + event for toggling a panel in the UI on or off
+    public delegate void ToggleUIPanel (int panelID, bool active);
+    public static ToggleUIPanel toggleUIPanelEvent;
+
+    //delegate + event for updating the text in a UI panel
+    public delegate void UpdateUIText(int panelID, string panelText);
+    public static UpdateUIText updateUITextEvent;
 
 
     /*

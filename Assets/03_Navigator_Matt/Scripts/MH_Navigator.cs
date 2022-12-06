@@ -5,7 +5,7 @@ using UnityEngine;
 public class MH_Navigator : MonoBehaviour
 {
     // this is the players move speed
-    public float moveSpeed = 100f;
+    public float moveSpeed = 1f;
 
     // Update is called once per frame
     void Update()
@@ -22,15 +22,19 @@ public class MH_Navigator : MonoBehaviour
     // Calls the quit game function when the player makes contact with either of the two walls
     private void OnTriggerEnter(Collider collision)
     {
-     if (collision.CompareTag("Green Wall"))
+        if(collision.CompareTag("Wall"))
+        {
+            // Quit the game
+            Debug.Log("Fail");
+            EventManager.microGameCompleteEvent(false);
+        }
+        else if (collision.CompareTag("Green Wall"))
         {
             Debug.Log("Win");
-            QuitGame();
+            EventManager.microGameCompleteEvent(true);
         }
     }
      //Call this to quit the game when in the editor (NOTE: this will not work if you build the executable)
-    void QuitGame() 
-    {
-        //UnityEditor.EditorApplication.isPlaying = false;
-    }
+
+    
 }

@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ball
+  - Obstacles
   layers:
   - Default
   - TransparentFX
@@ -36,8 +37,8 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
+  - 'Skybox '
+  - Credit
   m_SortingLayers:
   - name: Default
     uniqueID: 0
