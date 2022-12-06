@@ -9,12 +9,13 @@ public class CookEgg_Event : MonoBehaviour
 {
     public UnityEvent winGameUI;
     public UnityEvent loseGameUI;
-    public UnityEvent Load_W_Button;
-    public UnityEvent Load_S_Button;
     public UnityEvent RemoveButtonSignal;
     public UnityEvent gameStart;
-    [SerializeField] Slider progressBar;
+    [SerializeField] AudioSource corretInputAudio;
+    [SerializeField] GameObject press_W_Button;
+    [SerializeField] GameObject press_S_Button;
     [SerializeField] GameObject PauseMenu;
+    [SerializeField] Slider progressBar;
     [SerializeField] Slider temperatureBar;
     [SerializeField] CookEgg_Timer timer;
     [SerializeField] CookEgg_ProgressBar progress;
@@ -59,7 +60,8 @@ public class CookEgg_Event : MonoBehaviour
         {
             if(temperatureBar.value <= progress.minTempValue)
             {
-                Load_W_Button.Invoke();
+                press_W_Button.SetActive(true);
+                W_ButtonAudio();
             }
         }                        
     }
@@ -70,7 +72,8 @@ public class CookEgg_Event : MonoBehaviour
         {
             if(temperatureBar.value >= progress.maxTempValue)
             {
-                Load_S_Button.Invoke();
+                press_S_Button.SetActive(true);
+                S_ButtonAudio();
             }
         }                        
     }
@@ -81,10 +84,28 @@ public class CookEgg_Event : MonoBehaviour
         {
             if(temperatureBar.value > progress.minTempValue && temperatureBar.value < progress.maxTempValue)
             {
-                RemoveButtonSignal.Invoke();
+                press_W_Button.SetActive(false);
+                press_S_Button.SetActive(false);
+                W_ButtonAudio();
+                S_ButtonAudio();
             }
         }                        
     }
+    public void W_ButtonAudio()
+    {
+        if(Input.GetKeyDown(KeyCode.W))
+        {
+            corretInputAudio.Play();
+        }
+    }
+    public void S_ButtonAudio()
+    {
+        if(Input.GetKeyDown(KeyCode.S))
+        {
+            corretInputAudio.Play();
+        }
+    }
+
     //Turn on button signal function
     public void TurnOnButtonSignal()
     {

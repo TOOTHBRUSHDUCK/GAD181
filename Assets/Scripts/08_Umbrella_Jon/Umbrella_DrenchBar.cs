@@ -26,7 +26,7 @@ public class Umbrella_DrenchBar : MonoBehaviour
     }
     public void UpdateDrenchBarText(float drenchValue)
     {
-        drenchValueUI.text = drenchValue.ToString("00.0");
+        drenchValueUI.text = drenchValue.ToString("00");
     }
     public void TurnDrenchBarOn()
     {

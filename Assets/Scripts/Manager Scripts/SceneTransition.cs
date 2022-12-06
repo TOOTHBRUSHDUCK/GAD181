@@ -30,4 +30,8 @@ public class SceneTransition : MonoBehaviour
             Snake.SetActive(true);
         }
     }
+    public void LoadScene(string scenename)
+    {
+        SceneManager.LoadScene(scenename);
+    }
 }

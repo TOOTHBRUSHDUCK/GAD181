@@ -52,15 +52,15 @@ public class Umbrella_Event : MonoBehaviour
             //LoseGameUI.Invoke();
         }
     }
-    void PauseGame()
+    public void PauseGame()
     {
         Time.timeScale = 0;
-        PauseMenu.SetActive(true);
+        //PauseMenu.SetActive(true);
     }
-    void ResumeGame()
+    public void ResumeGame()
     {
         Time.timeScale = 1;
-        PauseMenu.SetActive(false);
+        //PauseMenu.SetActive(false);
     }
     void GamePause()
     {

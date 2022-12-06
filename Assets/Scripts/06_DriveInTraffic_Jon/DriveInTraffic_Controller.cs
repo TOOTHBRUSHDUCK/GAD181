@@ -4,15 +4,22 @@ using UnityEngine;
 
 public class DriveInTraffic_Controller : MonoBehaviour
 {
+    //value for speed
     [SerializeField] private int moveSpeed;
+    private int defaultMoveSpeed;
+    [SerializeField] private int speedBoost = 10;
     [SerializeField] private int turnSpeed;
-    [SerializeField] private int jumpHeight;
+    //value for jump function
+    /*[SerializeField] private int jumpHeight;
+    
     [SerializeField] private bool isGrounded;
+    
     [SerializeField] private Rigidbody rig;
-
+    */
+    [SerializeField] AudioSource speedBoostAudio;
     void Start()
     {
-
+        defaultMoveSpeed = moveSpeed;
     }    
     void Update()
     {
@@ -42,20 +49,26 @@ public class DriveInTraffic_Controller : MonoBehaviour
             
         }
         //detect if game object is on the ground
-        if (Input.GetKey(KeyCode.Space) == true && isGrounded)
+        if (Input.GetKeyDown(KeyCode.Space) == true)
         {
-            isGrounded = false;
-            rig.AddForce(Vector3.up * this.jumpHeight, ForceMode.Impulse);
+            moveSpeed += speedBoost;
+            speedBoostAudio.Play();
+            speedBoostAudio.mute = false;
+        }
+        else if (Input.GetKeyUp(KeyCode.Space) == true)
+        {
+            moveSpeed = defaultMoveSpeed;
+            speedBoostAudio.mute = true;
         }
     }
     
-    private void OnCollisionEnter(Collision other)
+    /*private void OnCollisionEnter(Collision other)
     {
         //contact point of two objects if contacts distance set to zero, Vector3.up because jumping will bounce charcter upwards
         if(other.contacts[0].normal == Vector3.up)
             {
                 isGrounded = true;
             }
-    }
+    }*/
 }
 

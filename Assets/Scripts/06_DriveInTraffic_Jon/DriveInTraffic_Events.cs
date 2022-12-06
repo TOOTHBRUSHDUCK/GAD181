@@ -11,6 +11,7 @@ public class DriveInTraffic_Events : MonoBehaviour
     public UnityEvent gameStart;
     [SerializeField] DriveInTraffic_GoalTrigger goalTrigger;
     [SerializeField] DriveInTraffic_TrafficLight trafficLight;
+    [SerializeField] DriveInTraffic_ImpactTrigger playerCarImpactTrigger;
     [SerializeField] GameObject PauseMenu;
     [SerializeField] private bool gameOn; //set true by start button
     void Start()
@@ -33,7 +34,7 @@ public class DriveInTraffic_Events : MonoBehaviour
                 EventManager.microGameCompleteEvent(true);
                 gameOn = false;
             }
-            else if(trafficLight.redLight == true && goalTrigger.reachGoal ==false)
+            else if(trafficLight.redLight == true && goalTrigger.reachGoal ==false || playerCarImpactTrigger.initialCarHP <= 0)
             {
                 //loseGameUI.Invoke();
                 EventManager.microGameCompleteEvent(false);

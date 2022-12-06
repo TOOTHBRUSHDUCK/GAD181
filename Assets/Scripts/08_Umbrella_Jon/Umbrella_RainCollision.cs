@@ -9,6 +9,7 @@ public class Umbrella_RainCollision : MonoBehaviour
     [SerializeField] Umbrella_DrenchBar drenchBar;
     [SerializeField] Color playerStartColor;
     [SerializeField] GameObject player;
+    [SerializeField] AudioSource hitByRainAudio;
     void Start()
     {
         SavePlayerInitialColor();
@@ -24,6 +25,7 @@ public class Umbrella_RainCollision : MonoBehaviour
         {   
             other.GetComponent<Renderer>().material.color = Color.red;
             drenchBar.IncreaseDrenchValue();
+            hitByRainAudio.Play();
             //Debug.Log("You have hit the player");
         }
         else
