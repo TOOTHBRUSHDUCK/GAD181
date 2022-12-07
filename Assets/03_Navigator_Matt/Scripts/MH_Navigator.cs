@@ -5,18 +5,18 @@ using UnityEngine;
 public class MH_Navigator : MonoBehaviour
 {
     // this is the players move speed
-    public float moveSpeed = 1f;
+    /*public float moveSpeed = 1f;*/
 
     // Update is called once per frame
     void Update()
     {
 
         // Move player via WASD keys
-        if (Input.GetKey(KeyCode.W) == true) { this.transform.position += this.transform.forward * moveSpeed * Time.deltaTime; }
+        /*if (Input.GetKey(KeyCode.W) == true) { this.transform.position += this.transform.forward * moveSpeed * Time.deltaTime; }
         if (Input.GetKey(KeyCode.S) == true) { this.transform.position -= this.transform.forward * moveSpeed * Time.deltaTime; }
 
         if (Input.GetKey(KeyCode.D) == true) { this.transform.position += this.transform.right * moveSpeed * Time.deltaTime; }
-        if (Input.GetKey(KeyCode.A) == true) { this.transform.position -= this.transform.right * moveSpeed * Time.deltaTime; } 
+        if (Input.GetKey(KeyCode.A) == true) { this.transform.position -= this.transform.right * moveSpeed * Time.deltaTime; } */
     }
 
     // Calls the quit game function when the player makes contact with either of the two walls
