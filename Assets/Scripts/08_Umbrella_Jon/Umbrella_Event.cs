@@ -20,9 +20,12 @@ public class Umbrella_Event : MonoBehaviour
 
     void Update()
     {
-        StartGame();
-        GameState();
-        GamePause();
+        if (GameManager.Instance.isPaused == false)
+        {
+            StartGame();
+            GameState();
+        }
+        //GamePause();
     }
     void StartGame()
     {

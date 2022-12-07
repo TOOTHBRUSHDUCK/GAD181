@@ -1,34 +1,40 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MB_Mourn_Wife_1 : MB_HoldButt
 {
     [SerializeField] private GameObject flower;
     [SerializeField] private GameObject arm;
     [SerializeField] private GameObject leg;
+    [SerializeField] private GameObject igor;
     [SerializeField] private GameObject mainFlower;
+    [SerializeField] private GameObject flowerBox;
 
     public override void DoOnHold()
     {
         if(heldTime == 1)
         {
             //Reset Igor here
-            flower = Instantiate(mainFlower, (transform.position + new Vector3(1f,0f,0.7f)), Quaternion.identity);
             rightIgor();
+            flower = Instantiate(mainFlower, (igor.transform.position + new Vector3(1f,0f,1.2f)), Quaternion.identity, flowerBox.transform);
+            //SceneManager.MoveGameObjectToScene(flower, SceneManager.GetSceneByName("MB_Mourn_Wife_1"));
+            //rightIgor();
         }
         else if(heldTime > 1 && heldTime <= desiredHold)
         {
-            transform.rotation *= Quaternion.AngleAxis(1, Vector3.up);
-            arm.transform.localRotation *= Quaternion.AngleAxis(-0.8f, Vector3.up);
-            arm.transform.localPosition += new Vector3(0.01f, 0f, 0.01f);
+            igor.transform.position = new Vector3((3f / desiredHold), 0f, 0f) + igor.transform.position;
+            transform.rotation *= Quaternion.AngleAxis((1f * 50 / desiredHold), Vector3.up);
+            arm.transform.localRotation *= Quaternion.AngleAxis((-0.8f * 50 / desiredHold), Vector3.up);
+            arm.transform.localPosition += new Vector3((0.01f * 50 / desiredHold), 0f, (0.01f * 50 / desiredHold));
             if(heldTime < 25)
             {
-                flower.transform.position += new Vector3(0.02f,0f,0.001f);
+                flower.transform.position += new Vector3((0.02f * 50 / desiredHold) + (3f / desiredHold),0f,(0.001f * 50 / desiredHold));
             }
             else
             {
-                flower.transform.position += new Vector3(0.02f,0f,-0.0075f);
+                flower.transform.position += new Vector3((0.02f * 50 / desiredHold) + (3f / desiredHold),0f,(-0.0075f * 50 / desiredHold));
             }
         }
     }
@@ -79,6 +85,7 @@ public class MB_Mourn_Wife_1 : MB_HoldButt
 
     private void rightIgor()
     {
+        igor.transform.position = new Vector3(-4f, 5f, -1f);
         transform.rotation = Quaternion.identity;
         arm.transform.rotation = Quaternion.identity;
         leg.transform.rotation = Quaternion.identity;
@@ -101,8 +108,9 @@ public class MB_Mourn_Wife_1 : MB_HoldButt
         //call win event
         Debug.Log("Win");
         //Application.Quit();
-        EventManager.microGameCompleteEvent(true);
+        //EventManager.microGameCompleteEvent(true);
         //UnityEditor.EditorApplication.isPlaying = false;
+        Invoke("EndWin", 1f);
         
     }
 }

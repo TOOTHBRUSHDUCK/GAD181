@@ -5,6 +5,7 @@ using UnityEngine;
 public class MB_Brush_Teeth : MB_HoldButt
 {
     private Rigidbody rb;
+    [SerializeField] GameObject teeth;
 
     void Start()
     {
@@ -34,5 +35,7 @@ public class MB_Brush_Teeth : MB_HoldButt
         {
             rb.velocity = new Vector3(0.8f,0,0) * (heldTime+2);
         }
+
+        teeth.GetComponent<Renderer>().material.color = Color.Lerp(Color.yellow, Color.white, (heldTime / 40f));
     }
 }

@@ -30,12 +30,17 @@ public class CookEgg_Event : MonoBehaviour
     }
     void Update() 
     {
-        GameState();
+
+        if (GameManager.Instance.isPaused == false)
+        {
+            GameState();
         W_Buttonsignal();
         S_Buttonsignal();
         No_Buttonsignal();
         StartGame();
-        GamePause();
+        }
+        
+       //GamePause();
     }
 
     void GameState()
@@ -43,13 +48,13 @@ public class CookEgg_Event : MonoBehaviour
         if(progressBar.value<100 && timer.timeLeft==0)
         {
             //loseGameUI.Invoke();
-            EventManager.microGameCompleteEvent(true);
+            EventManager.microGameCompleteEvent(false);
             gameOn = false;
         }
         else if(progressBar.value==100 && timer.timeLeft>0)
         {
             //winGameUI.Invoke();
-            EventManager.microGameCompleteEvent(false);
+            EventManager.microGameCompleteEvent(true);
             gameOn = false;
         }
     }

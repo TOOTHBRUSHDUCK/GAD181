@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour
     public int livesRemaining { get; private set; }
 
 
+
+
     //references to the prefab manager objects + scripts
     [SerializeField] GameObject eventManagerPref;
     [SerializeField] GameObject microGameManagerPref;
@@ -181,53 +183,87 @@ public class GameManager : MonoBehaviour
         //if win: check the game type 
         if(win == true)
         {
-            if(gameMode == GameMode.ThreeStrikes) //if it was 3 strkes and you're out
-            {
-                //invoke ‘UpdateHighScore’ event and invoke ‘NextGameRandom’ event
-                Debug.Log("You won the game!");
-                EventManager.nextGameRandomEvent();
-            }
-            else if(gameMode == GameMode.WholePlaylist) //if entire playlist
-            {
-                //invoke ‘UpdateHighScore’ event and invoke ‘NextGamePlaylist’ event 
-                EventManager.nextGameWholePlaylistEvent();
-            }
-            else //if Freeplay:
-            {
-                //invoke ‘UpdateHighScore’ event and invoke ‘MainMenu’ event 
-                EventManager.returnMainMenuEvent();
-            }
+
+            //pause the game
+            PauseGame();
+            //activate the 'You Win!' panel
+            EventManager.toggleWinPanelEvent(true);
+            //invoke 'WonGame' method after delay
+            Invoke("WonGame", 3f);
+
         }
         else //if lose:  
         {
-            //check the game type
-            if (gameMode == GameMode.ThreeStrikes) //if it was 3 strkes and you're out
+
+            //pause the game
+            PauseGame();
+            //activate the 'You Lose!' panel
+            EventManager.toggleLosePanelEvent(true);
+            //invoke 'LostGame' method after delay
+            Invoke("LostGame", 3f);
+            
+        }
+    }
+
+    private void WonGame()
+    {
+        //close the 'You Win!' panel
+        EventManager.toggleWinPanelEvent(false);
+        //unpause the game
+        UnpauseGame();
+
+        if (gameMode == GameMode.ThreeStrikes) //if it was 3 strkes and you're out
+        {
+            //invoke ‘UpdateHighScore’ event and invoke ‘NextGameRandom’ event
+            //Debug.Log("You won the game!");
+            EventManager.nextGameRandomEvent();
+        }
+        else if (gameMode == GameMode.WholePlaylist) //if entire playlist
+        {
+            //invoke ‘UpdateHighScore’ event and invoke ‘NextGamePlaylist’ event 
+            EventManager.nextGameWholePlaylistEvent();
+        }
+        else //if Freeplay:
+        {
+            //invoke ‘UpdateHighScore’ event and invoke ‘MainMenu’ event 
+            EventManager.returnMainMenuEvent();
+        }
+    }
+
+    private void LostGame()
+    {
+        //close the 'You Lose!' panel
+        EventManager.toggleLosePanelEvent(false);
+        //unpause the game
+        UnpauseGame();
+
+        //check the game type
+        if (gameMode == GameMode.ThreeStrikes) //if it was 3 strkes and you're out
+        {
+            //check if lives greater than 1
+            if (livesRemaining > 1)
             {
-                //check if lives greater than 1
-                if(livesRemaining > 1)
-                {
-                    //Yes? Subtract 1 life and invoke ‘NextGameRandom’
-                    livesRemaining--;
-                    //Debug.Log("You won the game!");
-                    EventManager.nextGameRandomEvent();
-                }
-                else
-                {
-                    //No? Invoke ‘GameOver’ event
-                    Debug.Log("You lost the game!");
-                    EventManager.returnMainMenuEvent();
-                }
+                //Yes? Subtract 1 life and invoke ‘NextGameRandom’
+                livesRemaining--;
+                //Debug.Log("You won the game!");
+                EventManager.nextGameRandomEvent();
             }
-            else if (gameMode == GameMode.WholePlaylist) //if entire playlist
+            else
             {
-                //invoke ‘NextGamePlaylist’ event 
-                EventManager.nextGameWholePlaylistEvent();
-            }
-            else //if Freeplay:
-            {
-                //invoke ‘MainMenu’ event 
+                //No? Invoke ‘GameOver’ event
+                Debug.Log("You lost the game!");
                 EventManager.returnMainMenuEvent();
             }
+        }
+        else if (gameMode == GameMode.WholePlaylist) //if entire playlist
+        {
+            //invoke ‘NextGamePlaylist’ event 
+            EventManager.nextGameWholePlaylistEvent();
+        }
+        else //if Freeplay:
+        {
+            //invoke ‘MainMenu’ event 
+            EventManager.returnMainMenuEvent();
         }
     }
 
