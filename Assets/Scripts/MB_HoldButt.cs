@@ -25,7 +25,7 @@ public class MB_HoldButt : MonoBehaviour
 
     void Update() //Update is purely used to check for the desired input, and sets a bool to true while it's held
     {
-        if(GameManager.Instance.isPaused == false)
+        if(GameManager.Instance.isPaused == false && gameEnded == false)
         {
             if(desiredInput != "any")
             {
@@ -86,7 +86,7 @@ public class MB_HoldButt : MonoBehaviour
 
     void FixedUpdate() //Fixed update is where main thing get's called, and timer ticks up.
     {
-        if(GameManager.Instance.isPaused == false)
+        if(GameManager.Instance.isPaused == false && gameEnded == false)
         {
             CheckHold();
             timer++;
@@ -143,8 +143,10 @@ public class MB_HoldButt : MonoBehaviour
         //call fail event
         Debug.Log("Fail");
         //Application.Quit();
-        EventManager.microGameCompleteEvent(false);
+        //EventManager.microGameCompleteEvent(false);
         //UnityEditor.EditorApplication.isPlaying = false;
+        gameEnded = true;
+        Invoke("EndLose", 1f);
     }
 
     public virtual void Win()
@@ -152,7 +154,20 @@ public class MB_HoldButt : MonoBehaviour
         //call win event
         Debug.Log("Win");
         //Application.Quit();
-        EventManager.microGameCompleteEvent(true);
+        //EventManager.microGameCompleteEvent(true);
         //UnityEditor.EditorApplication.isPlaying = false;
+        gameEnded = true;
+        Invoke("EndWin", 1f);
+    }
+
+    public virtual void EndWin()
+    {
+
+        EventManager.microGameCompleteEvent(true);
+    }
+
+    public virtual void EndLose()
+    {
+        EventManager.microGameCompleteEvent(false);
     }
 }

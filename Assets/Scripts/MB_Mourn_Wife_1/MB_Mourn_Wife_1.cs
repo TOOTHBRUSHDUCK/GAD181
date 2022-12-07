@@ -108,8 +108,9 @@ public class MB_Mourn_Wife_1 : MB_HoldButt
         //call win event
         Debug.Log("Win");
         //Application.Quit();
-        EventManager.microGameCompleteEvent(true);
+        //EventManager.microGameCompleteEvent(true);
         //UnityEditor.EditorApplication.isPlaying = false;
+        Invoke("EndWin", 1f);
         
     }
 }
