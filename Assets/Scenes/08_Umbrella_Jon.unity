@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.06921768, g: 0.06846156, b: 0.06846861, a: 1}
+  m_IndirectSpecularColor: {r: 0.06921697, g: 0.068459675, b: 0.0684683, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1486,6 +1486,7 @@ MonoBehaviour:
           m_BoolArgument: 1
         m_CallState: 2
   timerBar: {fileID: 2048533568}
+  rainSpawner: {fileID: 1406316336}
   drenchBar: {fileID: 406817303}
   PauseMenu: {fileID: 1627235926}
   gameOn: 0

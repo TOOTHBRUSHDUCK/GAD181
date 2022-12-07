@@ -16,7 +16,10 @@ public class Umbrella_Timer : MonoBehaviour
 
     void Update()
     {
-      SetTimer();
+      if(GameManager.Instance.isPaused==false)
+      {
+        SetTimer();
+      }
       //CountDown();
     }
 

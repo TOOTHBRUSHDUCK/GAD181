@@ -22,8 +22,11 @@ public class CookEgg_Controller : MonoBehaviour
 
     void Update()
     {
+        if(GameManager.Instance.isPaused==false)
+        {
         IncreaseTemperatureInput();
         DropTemperatureInput();
+        }
     }
     //press w button to increase temperature value, egg colour changes in response
     public void IncreaseTemperatureInput()

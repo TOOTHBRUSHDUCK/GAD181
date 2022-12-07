@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.06921768, g: 0.06846156, b: 0.06846861, a: 1}
+  m_IndirectSpecularColor: {r: 0.06921697, g: 0.068459675, b: 0.0684683, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1207,7 +1207,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Ian(Scott) Bell
+  m_text: 'Ian ''Scotch'' Bell
 
 
     Lead Programmer
@@ -3703,7 +3703,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 41, y: -1440}
+  m_AnchoredPosition: {x: 41, y: -1534}
   m_SizeDelta: {x: -1536.8036, y: -370.017}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1346476012
@@ -3827,6 +3827,13 @@ MonoBehaviour:
     Synty Studio Limited
 
     Unity Technologies
+
+    Solumn
+    Night
+
+    JustCreate
+
+    Good ol'' Boy Games
 
 
 

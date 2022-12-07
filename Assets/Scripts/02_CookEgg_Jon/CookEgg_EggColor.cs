@@ -20,9 +20,12 @@ public class CookEgg_EggColor : MonoBehaviour
     }
     void Update()
     {
+        if(GameManager.Instance.isPaused == false)
+        {
         UnderCooked();
         CookRight();
         OverCooked();
+        }
     }
     //declare the startcolor as the default color value of the egg
     void NotCooking()
