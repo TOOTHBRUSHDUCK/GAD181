@@ -5,27 +5,16 @@ using UnityEngine.SceneManagement;
 
 public class Credit_SceneControl : MonoBehaviour
 {
-    void Update() 
+    public Animator transitionAnimator;
+    public float transitionTime = 1f;
+    public void LoadNextScene(string sceneName)
     {
-        //GamePause();
+        StartCoroutine(LoadLevel(sceneName));
     }
-    //addign this to empty object scene controller then placed under event management parent
-    public void LoadScene(string scenename)
+    IEnumerator LoadLevel(string sceneName)
     {
-        SceneManager.LoadScene(scenename);
-    }
-    void GamePause()
-    {
-        if(GameManager.Instance.isPaused == true)
-        {
-            if(Time.timeScale != 0)
-            {
-                Time.timeScale = 0;
-            }
-        }
-        else
-        {
-            Time.timeScale = 1;
-        }
+        transitionAnimator.SetTrigger("Start");
+        yield return new WaitForSeconds(transitionTime);
+        SceneManager.LoadScene(sceneName);
     }
 }
