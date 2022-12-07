@@ -25,57 +25,60 @@ public class MB_HoldButt : MonoBehaviour
 
     void Update() //Update is purely used to check for the desired input, and sets a bool to true while it's held
     {
-        if(desiredInput != "any")
+        if(GameManager.Instance.isPaused == false && gameEnded == false)
         {
-            if(mash)
+            if(desiredInput != "any")
             {
-               if(Input.GetKeyDown(desiredInput))
+                if(mash)
                 {
-                    isHeld = true;
-                    heldTime++;
-                    DoOnHold();
+                if(Input.GetKeyDown(desiredInput))
+                    {
+                        isHeld = true;
+                        heldTime++;
+                        DoOnHold();
+                    }
+                    else
+                    {
+                        isHeld = false;
+                    } 
                 }
                 else
                 {
-                    isHeld = false;
-                } 
+                    if(Input.GetKey(desiredInput))
+                    {
+                        isHeld = true;
+                    }
+                    else
+                    {
+                        isHeld = false;
+                    }
+                }
             }
             else
             {
-                if(Input.GetKey(desiredInput))
+                if(mash)
                 {
-                    isHeld = true;
+                if(Input.anyKeyDown)
+                    {
+                        isHeld = true;
+                        heldTime++;
+                        DoOnHold();
+                    }
+                    else
+                    {
+                        isHeld = false;
+                    } 
                 }
                 else
                 {
-                    isHeld = false;
-                }
-            }
-        }
-        else
-        {
-            if(mash)
-            {
-               if(Input.anyKeyDown)
-                {
-                    isHeld = true;
-                    heldTime++;
-                    DoOnHold();
-                }
-                else
-                {
-                    isHeld = false;
-                } 
-            }
-            else
-            {
-                if(Input.anyKey)
-                {
-                    isHeld = true;
-                }
-                else
-                {
-                    isHeld = false;
+                    if(Input.anyKey)
+                    {
+                        isHeld = true;
+                    }
+                    else
+                    {
+                        isHeld = false;
+                    }
                 }
             }
         }
@@ -83,8 +86,11 @@ public class MB_HoldButt : MonoBehaviour
 
     void FixedUpdate() //Fixed update is where main thing get's called, and timer ticks up.
     {
-        CheckHold();
-        timer++;
+        if(GameManager.Instance.isPaused == false && gameEnded == false)
+        {
+            CheckHold();
+            timer++;
+        }
     }
 
     public virtual void CheckHold() //Meat of this parent class. Significantly less used in Mashers, but still checks for losing the game.
@@ -137,8 +143,10 @@ public class MB_HoldButt : MonoBehaviour
         //call fail event
         Debug.Log("Fail");
         //Application.Quit();
-        Application.LoadLevel(Application.loadedLevel);
+        //EventManager.microGameCompleteEvent(false);
         //UnityEditor.EditorApplication.isPlaying = false;
+        gameEnded = true;
+        Invoke("EndLose", 1f);
     }
 
     public virtual void Win()
@@ -146,7 +154,20 @@ public class MB_HoldButt : MonoBehaviour
         //call win event
         Debug.Log("Win");
         //Application.Quit();
-        Application.LoadLevel(Application.loadedLevel);
+        //EventManager.microGameCompleteEvent(true);
         //UnityEditor.EditorApplication.isPlaying = false;
+        gameEnded = true;
+        Invoke("EndWin", 1f);
+    }
+
+    public virtual void EndWin()
+    {
+
+        EventManager.microGameCompleteEvent(true);
+    }
+
+    public virtual void EndLose()
+    {
+        EventManager.microGameCompleteEvent(false);
     }
 }

@@ -27,7 +27,7 @@ public class EventManager : MonoBehaviour
         else
         {
             //in the event instance is not null there is already an event manager and an error should be logged for debugging.
-            Debug.LogError("There should only be one EventManager in the scene!");
+            //Debug.LogError("There should only be one EventManager in the scene!");
         }
     }
 
@@ -52,8 +52,8 @@ public class EventManager : MonoBehaviour
     public static UnpauseGame unpauseGameEvent;
 
     //OpenPauseMenu event
-    public delegate void OpenPauseMenu();
-    public static OpenPauseMenu openPauseMenuEvent;
+    public delegate void ActivatePauseButton(bool toggle);
+    public static ActivatePauseButton togglePauseButtonMenuEvent;
 
     //CloseMenus event (closes any menus which are currently open such as the main pause menu and settings/options menu)
     public delegate void CloseMenus();
@@ -64,7 +64,7 @@ public class EventManager : MonoBehaviour
     public static OpenHighScoreScreen openHighScoreScreenEvent;
 
     //OpenOptionsMenu
-    public delegate void OpenOptionsMenu();
+    public delegate void OpenOptionsMenu(bool toggle);
     public static OpenOptionsMenu openOptionsMenuEvent;
 
     //MicroGameComplete event taking in a bool of true or false
@@ -104,6 +104,20 @@ public class EventManager : MonoBehaviour
     public delegate void LoadSettings();
     public static LoadSettings loadSettingsEvent;
 
+    //delegate + event for toggling a panel in the UI on or off
+    public delegate void ToggleUIPanel (int panelID, bool active);
+    public static ToggleUIPanel toggleUIPanelEvent;
+
+    //delegate + event for updating the text in a UI panel
+    public delegate void UpdateUIText(int panelID, string panelText);
+    public static UpdateUIText updateUITextEvent;
+
+    //delegate + event for toggling the you win/lose panels on and off
+    public delegate void ToggleWinPanel(bool toggle);
+    public static ToggleWinPanel toggleWinPanelEvent;
+
+    public delegate void ToggleLosePanel(bool toggle);
+    public static ToggleLosePanel toggleLosePanelEvent;
 
     /*
      *Event/s for 01_PipeTurn_IB 

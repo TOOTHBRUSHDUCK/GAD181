@@ -30,7 +30,18 @@ public class PipeManager_Scotch : MonoBehaviour
     public static PipeManager_Scotch instance;
 
     //float for timer
-    private float timer;
+    [SerializeField] private float timer;
+
+    //audio source for playing sound effects
+    [SerializeField] AudioSource sfxSource;
+
+    //audio clips for...
+    //changing pipe selection
+    [SerializeField] AudioClip changeSelectAudio;
+    //turning a pipe
+    [SerializeField] AudioClip turnPipeAudio;
+    //pipe being correctly aligned
+    [SerializeField] AudioClip pipeCorrectAudio;
 
     private void OnEnable()
     {
@@ -40,8 +51,6 @@ public class PipeManager_Scotch : MonoBehaviour
             instance = this;
         }        
 
-        //set the initial value for the timer
-        timer = 100f;
     }
 
     private void Awake()
@@ -70,64 +79,74 @@ public class PipeManager_Scotch : MonoBehaviour
     //on update
     private void Update()
     {
-        //on each frame decrease the time remaining by deltatime and udpate the UI
-        if(timer > 0)
+        if (GameManager.Instance.isPaused == false)
         {
-            timer -= Time.deltaTime;
-            timerText.text = "Time Remaining: " + (int)timer;
-        }
+            //on each frame decrease the time remaining by deltatime and udpate the UI
+            if (timer > 0)
+            {
+                timer -= Time.deltaTime;
+                //string timeRemaining = "Time Remaining: " + (int)timer;
+                EventManager.updateUITextEvent(0, "Time Remaining: " + (int)timer);
+                //timerText.text = "Time Remaining: " + (int)timer;
+            }
 
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            currentPipe.TurnPipe(0);
-            Invoke("CheckPipes", 1f);
-        }
-        else if (Input.GetKeyDown(KeyCode.D))
-        {
-            currentPipe.TurnPipe(1);
-            Invoke("CheckPipes", 1f);
-        }
+            if (Input.GetKeyDown(KeyCode.A))
+            {
+                currentPipe.TurnPipe(0);
+                sfxSource.PlayOneShot(turnPipeAudio);
+                currentPipe.CheckAligned();
+                Invoke("CheckPipes", 1f);
+            }
+            else if (Input.GetKeyDown(KeyCode.D))
+            {
+                currentPipe.TurnPipe(1);
+                sfxSource.PlayOneShot(turnPipeAudio);
+                currentPipe.CheckAligned();
+                Invoke("CheckPipes", 1f);
+            }
 
-        //check for player input to switch pipes and call the 'switch pipe' method
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            SwitchPipe(0);
+            //check for player input to switch pipes and call the 'switch pipe' method
+            if (Input.GetKeyDown(KeyCode.W))
+            {
+                SwitchPipe(0);
+                sfxSource.PlayOneShot(changeSelectAudio);
+            }
+            else if (Input.GetKeyDown(KeyCode.S))
+            {
+                SwitchPipe(1);
+                sfxSource.PlayOneShot(changeSelectAudio);
+            }
+
+            //call the 'check if all pipes are aligned' method
+            if (PipeTurnWinCheck() == true)
+            {
+                //Debug.Log("You win the game!");
+                EventManager.microGameCompleteEvent(true);
+
+            }
+            else if (PipeTurnWinCheck() == false && timer <= 0)
+            {
+                //Debug.Log("You lost the game!");
+                EventManager.microGameCompleteEvent(false);
+            }
         }
-        else if (Input.GetKeyDown(KeyCode.S))
-        {
-            SwitchPipe(1);
-        }
-        
-        //call the 'check if all pipes are aligned' method
-        if(PipeTurnWinCheck() == true)
-        {
-            //Debug.Log("You win the game!");
-            EventManager.microGameCompleteEvent(true);
-            
-        }
-        else if(PipeTurnWinCheck() == false && timer <= 0)
-        {
-            //Debug.Log("You lost the game!");
-            EventManager.microGameCompleteEvent(false);
-        }      
-        
     }
 
 
     //boolean method for checking if all pipes are aligned
     private bool PipeTurnWinCheck()
     {
-        Debug.Log("I'm working");
+        
         //iterate through all pipes in list of pipes and call the 'check aligned' method
         for (int i = 0; i < pipeTurners.Count; i++)
         {
             if (pipeTurners[i].CheckAligned() == false)
             {
-                Debug.Log("Not all pipes aligned");
+                //Debug.Log("Not all pipes aligned");
                 return false;
             }            
         }
-        Debug.Log("All pipes aligned");
+        //Debug.Log("All pipes aligned");
         return true;        
         //if none of the pipes return false: return true on this method
     }

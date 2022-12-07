@@ -19,6 +19,11 @@ public class FlappyBird_PlayerController : MonoBehaviour
     //rigidbody variable for the player character (bird/helicopter)
     private Rigidbody birdBody;
 
+    [SerializeField] AudioSource birdSFXsource;
+
+    [SerializeField] AudioClip birdSFXClip;
+
+
     //on enable 
     private void OnEnable()
     {
@@ -45,29 +50,37 @@ public class FlappyBird_PlayerController : MonoBehaviour
     //on update:
     private void Update()
     {
-        //increase Z velocity (apply force) of player character, interpolating between current velocity and max velocity over time
-        
-        if(birdBody.velocity.z > downVelMax)
+        if (GameManager.Instance.isPaused == false)
         {
-            birdBody.velocity += -Vector3.forward * 0.1f;
-        }
+            //increase Z velocity (apply force) of player character, interpolating between current velocity and max velocity over time
+
+            if (birdBody.velocity.z > downVelMax)
+            {
+                birdBody.velocity += -Vector3.forward * 0.1f;
+            }
             //Vector3.Slerp(birdBody.velocity, new Vector3(0, 0, downVelMax), Time.deltaTime);
 
-        //if the player presses spacebar and cooldown is less than 0:
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            if(inputCooldown < 0)
+            //if the player presses spacebar and cooldown is less than 0:
+            if (Input.GetKeyDown(KeyCode.Space))
             {
-                inputCooldown = inputCooldownMax;
-                birdBody.velocity += Vector3.forward * flapMultiplier;
-                //birdBody.AddForce(Vector3.forward * flapMultiplier, ForceMode.Impulse);
+                if (inputCooldown < 0)
+                {
+                    birdSFXsource.PlayOneShot(birdSFXClip);
+                    inputCooldown = inputCooldownMax;
+                    birdBody.velocity += Vector3.forward * flapMultiplier;
+                    //birdBody.AddForce(Vector3.forward * flapMultiplier, ForceMode.Impulse);
+                }
+            }
+
+            //if the cooldown is over 0 reduce it by time.deltatime
+            if (inputCooldown > 0)
+            {
+                inputCooldown -= Time.deltaTime;
             }
         }
-
-        //if the cooldown is over 0 reduce it by time.deltatime
-        if(inputCooldown > 0)
+        else
         {
-            inputCooldown -= Time.deltaTime;
+            birdBody.velocity = Vector3.zero;
         }
 
     }

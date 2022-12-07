@@ -9,16 +9,19 @@ public class Timer1 : MonoBehaviour
     public float timer1 = 10f;
     public void Update()
     {
-        timer1 -= Time.deltaTime;
-        Debug.Log(timer1);
-
-        if (timer1 <= 0)
+        if (!GameManager.Instance.isPaused)
         {
-            Debug.Log("win");
+            EventManager.updateUITextEvent(0, "Time Remaining: " + (int)timer1);
+
+            timer1 -= Time.deltaTime;
+            // Debug.Log(timer1);
+
+            if (timer1 <= 0)
+            {
+                //Debug.Log("win");
+                EventManager.microGameCompleteEvent(true);
+            }
         }
-
-
-
     }
     
 }

@@ -11,6 +11,13 @@ public class PipeTurner_Scotch : MonoBehaviour
     private bool aligned = false;
 
     [SerializeField] MeshRenderer piperender;
+
+    [SerializeField] AudioSource pipeSFXSource;
+
+    [SerializeField] AudioClip pipeCorrectAudio;
+
+    [SerializeField] GameObject particle1;
+    [SerializeField] GameObject particle2;
        
 
     private void Awake()
@@ -31,6 +38,15 @@ public class PipeTurner_Scotch : MonoBehaviour
 
     private void Start()
     {
+        if(particle1 != null)
+        {
+            particle1.SetActive(false);
+        }
+        if(particle2 != null)
+        {
+            particle2.SetActive(false);
+        }
+
         //subscribe to the pipecheckevent
         EventManager.pipeCheckEvent += SetAligned;
     }
@@ -76,18 +92,47 @@ public class PipeTurner_Scotch : MonoBehaviour
             //if the raycast hits a collider with the 'pipe_Negative' then set the pipe aligned bool to true
             if (hit.collider.tag == "pipe_Negative")
             {
+                if(particle1 != null)
+                {
+                    particle1.SetActive(true);
+                }
+                if(particle2 != null)
+                {
+                    particle2.SetActive(true);
+                }
+                //play the aligned pipe audio and turn on the particle effect for this pipe
+                if (aligned != true)
+                {
+                    pipeSFXSource.PlayOneShot(pipeCorrectAudio);
+                }
                 aligned = true;
                 //Debug.Log(name + " is aligned!");
             }
             //if the raycast doesn't hit a 'pipe_Negative' collider then set the pipe to negativ
             else if (hit.collider.tag != "pipe_Negative") 
             {
+                if (particle1 != null)
+                {
+                    particle1.SetActive(false);
+                }
+                if (particle2 != null)
+                {
+                    particle2.SetActive(false);
+                }
                 aligned = false;
                 //Debug.Log(name + " is not aligned!");
             } 
         }
         else
         {
+            if (particle1 != null)
+            {
+                particle1.SetActive(false);
+            }
+            if (particle2 != null)
+            {
+                particle2.SetActive(false);
+            }
             aligned = false;
             //Debug.Log(name + " is not aligned!");
         }
@@ -99,7 +144,9 @@ public class PipeTurner_Scotch : MonoBehaviour
     {
         if (aligned)
         {
+            
             return true;
+
         }
         else
         {
