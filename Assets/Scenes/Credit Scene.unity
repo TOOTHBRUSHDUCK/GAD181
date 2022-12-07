@@ -1083,7 +1083,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4192843778237182, guid: a22bb852cf433044e8752ea7fe62f570, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.4290957
+      value: -5.65
       objectReference: {fileID: 0}
     - target: {fileID: 4192843778237182, guid: a22bb852cf433044e8752ea7fe62f570, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1120,6 +1120,26 @@ PrefabInstance:
     - target: {fileID: 4192843778237182, guid: a22bb852cf433044e8752ea7fe62f570, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198018749353404848, guid: a22bb852cf433044e8752ea7fe62f570,
+        type: 3}
+      propertyPath: prewarm
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 198018749353404848, guid: a22bb852cf433044e8752ea7fe62f570,
+        type: 3}
+      propertyPath: startDelay.maxCurve.m_Curve.Array.data[0].value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198018749353404848, guid: a22bb852cf433044e8752ea7fe62f570,
+        type: 3}
+      propertyPath: startDelay.maxCurve.m_Curve.Array.data[1].value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198018749353404848, guid: a22bb852cf433044e8752ea7fe62f570,
+        type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.scalar
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a22bb852cf433044e8752ea7fe62f570, type: 3}
@@ -1190,9 +1210,19 @@ MonoBehaviour:
   m_text: 'Ian(Scott) Bell
 
 
+    Lead Programmer
+
     Game Designer
 
-    programmer'
+    Quality
+    Assurance
+
+
+    <Creator>
+
+    Turn Pipe
+
+    Flappy Bird'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
@@ -1482,9 +1512,17 @@ MonoBehaviour:
   m_text: 'Felix Spella
 
 
+    Programmer
+
     Game Designer
 
-    programmer'
+
+    <Creator>
+
+    Rotate
+    Ball
+
+    Don''t Click'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
@@ -1592,6 +1630,7 @@ Transform:
   m_Children:
   - {fileID: 1028481947}
   - {fileID: 363374059}
+  - {fileID: 750054418}
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1745,6 +1784,88 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1001 &750054417
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 627532250}
+    m_Modifications:
+    - target: {fileID: 1001481161504696, guid: 3d038c573e8a269499c7c275a1df51bd, type: 3}
+      propertyPath: m_Name
+      value: FX_Fireflies_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 1001481161504696, guid: 3d038c573e8a269499c7c275a1df51bd, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4144826456320224, guid: 3d038c573e8a269499c7c275a1df51bd, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4144826456320224, guid: 3d038c573e8a269499c7c275a1df51bd, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -5.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4144826456320224, guid: 3d038c573e8a269499c7c275a1df51bd, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.018283755
+      objectReference: {fileID: 0}
+    - target: {fileID: 4144826456320224, guid: 3d038c573e8a269499c7c275a1df51bd, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.1583147
+      objectReference: {fileID: 0}
+    - target: {fileID: 4144826456320224, guid: 3d038c573e8a269499c7c275a1df51bd, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4144826456320224, guid: 3d038c573e8a269499c7c275a1df51bd, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4144826456320224, guid: 3d038c573e8a269499c7c275a1df51bd, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4144826456320224, guid: 3d038c573e8a269499c7c275a1df51bd, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4144826456320224, guid: 3d038c573e8a269499c7c275a1df51bd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4144826456320224, guid: 3d038c573e8a269499c7c275a1df51bd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4144826456320224, guid: 3d038c573e8a269499c7c275a1df51bd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198824612677605784, guid: 3d038c573e8a269499c7c275a1df51bd,
+        type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 198824612677605784, guid: 3d038c573e8a269499c7c275a1df51bd,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 199875814902542284, guid: 3d038c573e8a269499c7c275a1df51bd,
+        type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3d038c573e8a269499c7c275a1df51bd, type: 3}
+--- !u!4 &750054418 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4144826456320224, guid: 3d038c573e8a269499c7c275a1df51bd,
+    type: 3}
+  m_PrefabInstance: {fileID: 750054417}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &804417962
 GameObject:
   m_ObjectHideFlags: 0
@@ -2507,7 +2628,16 @@ MonoBehaviour:
   m_text: 'Matthew Hopkins
 
 
-    2D/3D Artist'
+    2D/3D Artist
+
+    Programmer
+
+    Game Designer
+
+
+    <Creator>
+
+    Navigator'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
@@ -3078,7 +3208,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1102994058}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
   m_Name: 
@@ -3573,7 +3703,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 39, y: -1444}
+  m_AnchoredPosition: {x: 41, y: -1440}
   m_SizeDelta: {x: -1536.8036, y: -370.017}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1346476012
@@ -3692,7 +3822,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '3D Assets
+  m_text: '<3D Assets>
 
     Synty Studio Limited
 
@@ -3700,20 +3830,20 @@ MonoBehaviour:
 
 
 
-    Skybox
+    <Skybox>
 
     Scrycoast
 
 
 
-    GUI
+    <GUI>
 
     Layer
     Lab
 
 
 
-    Music
+    <Music>
 
     Tricksnstraps
 
@@ -3721,7 +3851,7 @@ MonoBehaviour:
 
 
 
-    Audio Effect
+    <Audio Effect>
 
     TinyWorlds
 
@@ -3868,14 +3998,26 @@ MonoBehaviour:
   m_text: 'Chun(Jon) Min Wong
 
 
-    Game Designer
+    Lead Audio
 
-    programmer
+    Lead UI
 
-    Audio Director
+    Programmer
 
-    UI/GUI
-    Director'
+    Game
+    Designer
+
+
+    <Creator>
+
+    Umbrella
+
+    Drive In Traffic
+
+    Cook Egg
+
+    Game
+    Credit'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
@@ -4108,9 +4250,21 @@ MonoBehaviour:
   m_text: 'Michael Bzdyl
 
 
+    Programmer
+
     Game Designer
 
-    programmer'
+    Quality Assurance
+
+
+    <Creator>
+
+    Pull
+    Pant
+
+    Brush Tooth
+
+    Mourn Wife'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
