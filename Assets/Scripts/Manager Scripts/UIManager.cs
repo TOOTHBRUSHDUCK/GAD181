@@ -26,12 +26,29 @@ public class UIManager : MonoBehaviour
     [SerializeField] GameObject optionsMenu;
     [SerializeField] GameObject quitMenu;
 
+    //the 'You Win!' and 'You Lose!' panels
+    [SerializeField] GameObject youWinPanel;
+    [SerializeField] GameObject youLosePanel;
+
     //subscribe to relevant events on EventManager
     private void Awake()
     {
+        if(youWinPanel != null)
+        {
+            youWinPanel.SetActive(false);
+        }
+        if(youLosePanel != null)
+        {
+            youLosePanel.SetActive(false);
+        }
+
         EventManager.toggleUIPanelEvent += PanelToggle;
         EventManager.updateUITextEvent += UpdateUIText;
         EventManager.togglePauseButtonMenuEvent += PauseButtonToggle;
+
+        EventManager.toggleLosePanelEvent += ToggleYouLose;
+        EventManager.toggleWinPanelEvent += ToggleYouWin;
+
         mainMenuButton.SetActive(false);
         pauseMenu.SetActive(false);
         quitMenu.SetActive(false);
@@ -63,6 +80,34 @@ public class UIManager : MonoBehaviour
         uiTexts[panelID].text = panelText;
     }
 
+    //method for turning the 'you win' panel on or off. take in boolean
+    private void ToggleYouWin (bool toggle)
+    {
+        //if the boolean is true then the panel activates, if false it deactivates
+        if(toggle == true)
+        {
+            youWinPanel.SetActive(true);
+        }
+        else
+        {
+            youWinPanel.SetActive(false);
+        }
+    }
+
+    //method for turning the 'you lose' panel on or off. takes in a boolean
+    private void ToggleYouLose(bool toggle)
+    {
+        //if true then activate the panel, if false then deactivate the panel
+        if(toggle == true)
+        {
+            youLosePanel.SetActive(true);
+        }
+        else
+        {
+            youLosePanel.SetActive(false);
+        }
+    }
+
     //method for pausing/unpausing the game (will invoke event)
 
     private void OnDestroy()
@@ -70,5 +115,7 @@ public class UIManager : MonoBehaviour
         EventManager.toggleUIPanelEvent -= PanelToggle;
         EventManager.updateUITextEvent -= UpdateUIText;
         EventManager.togglePauseButtonMenuEvent -= PauseButtonToggle;
+        EventManager.toggleLosePanelEvent -= ToggleYouLose; 
+        EventManager.toggleWinPanelEvent -= ToggleYouWin;
     }
 }
