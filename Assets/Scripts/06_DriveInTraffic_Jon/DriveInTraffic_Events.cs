@@ -20,9 +20,12 @@ public class DriveInTraffic_Events : MonoBehaviour
     }
     void Update()
     {
-        GameState();
-        StartGame();
-        GamePause();
+        if (GameManager.Instance.isPaused == false)
+        {
+            StartGame();
+            GameState();
+        }
+        //GamePause();
     }
     void GameState()
     {
