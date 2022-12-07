@@ -73,6 +73,7 @@ public class MicroGameManager : MonoBehaviour
         {
             currentGameIndex = gameIndex;
         }
+        EventManager.togglePauseButtonMenuEvent(true);
     }
 
     private void LaunchPlaylist(int playList)
@@ -97,7 +98,8 @@ public class MicroGameManager : MonoBehaviour
     //method for closing a microgame (unloading the scene) taking in an integer for the 'current microgame'
     private void CloseMicroGame()
     {
-        if(GameManager.Instance.gameMode == GameManager.GameMode.ThreeStrikes)
+        EventManager.togglePauseButtonMenuEvent(false);
+        if (GameManager.Instance.gameMode == GameManager.GameMode.ThreeStrikes)
         {
             SceneManager.UnloadSceneAsync(randomPlaylist[currentGameIndex]);
         }
