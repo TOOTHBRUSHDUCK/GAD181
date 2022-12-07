@@ -112,6 +112,12 @@ public class EventManager : MonoBehaviour
     public delegate void UpdateUIText(int panelID, string panelText);
     public static UpdateUIText updateUITextEvent;
 
+    //delegate + event for toggling the you win/lose panels on and off
+    public delegate void ToggleWinPanel(bool toggle);
+    public static ToggleWinPanel toggleWinPanelEvent;
+
+    public delegate void ToggleLosePanel(bool toggle);
+    public static ToggleLosePanel toggleLosePanelEvent;
 
     /*
      *Event/s for 01_PipeTurn_IB 
