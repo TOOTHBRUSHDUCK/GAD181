@@ -8,11 +8,14 @@ public class Winnerscript : MonoBehaviour
   
     public void Update()
     {
-        //Debug.Log(winnerscript);
-        if (Input.anyKeyDown)
-        {            
-            Debug.Log("you lose");
-            EventManager.microGameCompleteEvent(false);
+        if (!GameManager.Instance.isPaused)
+        {
+            //Debug.Log(winnerscript);
+            if (Input.anyKeyDown)
+            {
+                //Debug.Log("you lose");
+                EventManager.microGameCompleteEvent(false);
+            }
         }
     }
 }
