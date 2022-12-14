@@ -10,6 +10,7 @@ public class Umbrella_Event : MonoBehaviour
     public UnityEvent WinGameUI;
     public UnityEvent LoseGameUI;
     [SerializeField] Umbrella_Timer timerBar;
+    [SerializeField] Umbrella_RainSpawn rainSpawner;
     [SerializeField] Slider drenchBar;
     [SerializeField] GameObject PauseMenu;
     [SerializeField] bool gameOn = false; //turn on running TurnGameOn function by start button
@@ -47,11 +48,13 @@ public class Umbrella_Event : MonoBehaviour
         if(timerBar.timeLeft == 0 && drenchBar.value > 0 && Time.timeScale != 0)
         {
             EventManager.microGameCompleteEvent(true);
+            rainSpawner.CancelRainSpawn();
             //WinGameUI.Invoke();
         }
         else if(timerBar.timeLeft >= 0 && drenchBar.value < 1 && Time.timeScale != 0)
         {
             EventManager.microGameCompleteEvent(false);
+            rainSpawner.CancelRainSpawn();
             //LoseGameUI.Invoke();
         }
     }

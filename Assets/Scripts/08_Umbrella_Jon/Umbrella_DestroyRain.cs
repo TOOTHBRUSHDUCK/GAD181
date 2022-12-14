@@ -12,7 +12,10 @@ public class Umbrella_DestroyRain : MonoBehaviour
     }
     void Update()
     {
+        if(GameManager.Instance.isPaused==false)
+        {
         DeSpawnRain();
+        }
     }
     public void DeSpawnRain() 
     {

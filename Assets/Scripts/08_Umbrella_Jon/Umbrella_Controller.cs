@@ -16,7 +16,10 @@ public class Umbrella_Controller : MonoBehaviour
 
     void Update()
     {
+        if(GameManager.Instance.isPaused==false)
+        {
         UmbrellaControl();
+        }
     }
     void UmbrellaControl()
     {

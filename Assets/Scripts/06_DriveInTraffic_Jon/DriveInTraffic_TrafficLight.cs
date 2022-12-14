@@ -17,7 +17,10 @@ public class DriveInTraffic_TrafficLight : MonoBehaviour
 
     void Update()
     {
+        if(GameManager.Instance.isPaused==false)
+        {
         ChangeTrafficLight();
+        }
     }
     //set when to turn green, yellow and red light
     private void ChangeTrafficLight()
