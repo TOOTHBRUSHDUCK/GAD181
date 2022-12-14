@@ -33,11 +33,16 @@ public class CookEgg_Event : MonoBehaviour
 
         if (GameManager.Instance.isPaused == false)
         {
-            GameState();
+        GameState();
         W_Buttonsignal();
         S_Buttonsignal();
         No_Buttonsignal();
         StartGame();
+        }
+        else
+        {
+            press_W_Button.SetActive(false);
+            press_S_Button.SetActive(false);
         }
         
        //GamePause();
@@ -50,12 +55,16 @@ public class CookEgg_Event : MonoBehaviour
             //loseGameUI.Invoke();
             EventManager.microGameCompleteEvent(false);
             gameOn = false;
+            press_W_Button.SetActive(false);
+            press_S_Button.SetActive(false);
         }
         else if(progressBar.value==100 && timer.timeLeft>0)
         {
             //winGameUI.Invoke();
             EventManager.microGameCompleteEvent(true);
             gameOn = false;
+            press_W_Button.SetActive(false);
+            press_S_Button.SetActive(false);
         }
     }
     //to pop up W button UI to notify players which button to press 
@@ -132,7 +141,7 @@ public class CookEgg_Event : MonoBehaviour
     {
         gameOn = true;
     }
-        void PauseGame()
+    void PauseGame()
     {
         Time.timeScale = 0;
         PauseMenu.SetActive(true);

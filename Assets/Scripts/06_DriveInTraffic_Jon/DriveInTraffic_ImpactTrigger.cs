@@ -26,7 +26,10 @@ public class DriveInTraffic_ImpactTrigger : MonoBehaviour
         {
             impactMetal.Play();
             carImpactAudio.Play();
-            initialCarHP -= 1;
+            if(initialCarHP > 0)
+            {
+                initialCarHP -= 1;
+            }
         }    
     }
     private void CarOnSmoke()
