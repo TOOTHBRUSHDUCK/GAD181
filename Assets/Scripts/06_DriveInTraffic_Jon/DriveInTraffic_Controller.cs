@@ -17,33 +17,42 @@ public class DriveInTraffic_Controller : MonoBehaviour
     [SerializeField] private Rigidbody rig;
     */
     [SerializeField] AudioSource speedBoostAudio;
+    private bool freezeMovement = false;
     void Start()
     {
         defaultMoveSpeed = moveSpeed;
     }    
     void Update()
     {
-        MovementControl();
+        if(GameManager.Instance.isPaused==false)
+        {
+            freezeMovement = false;
+            MovementControl();
+        }
+        else
+        {
+            freezeMovement = true;
+        }
     }
     void MovementControl()
     {       
         //move forwadrs
-        if (Input.GetKey(KeyCode.W) == true)
+        if (Input.GetKey(KeyCode.W) == true && freezeMovement == false)
         { 
             this.transform.position += this.transform.forward * moveSpeed * Time.deltaTime;
         }
         //move backwards
-        if (Input.GetKey(KeyCode.S) == true)
+        if (Input.GetKey(KeyCode.S) == true && freezeMovement == false)
         { 
             this.transform.position -= this.transform.forward * moveSpeed * Time.deltaTime;            
         }
         //float angle = turnspeed * Time.deltaTime ; positive value of turnspeed will turn the object clockwise(turn right)
-        if (Input.GetKey(KeyCode.D) == true)
+        if (Input.GetKey(KeyCode.D) == true && freezeMovement == false)
         { 
             this.transform.RotateAround(this.transform.position, Vector3.up, turnSpeed * Time.deltaTime);            
         }
         //float angle = -turnspeed * Time.deltaTime ; negative value of turnspeed will turn the object anti-clockwise(turn left)
-        if (Input.GetKey(KeyCode.A) == true)
+        if (Input.GetKey(KeyCode.A) == true && freezeMovement == false)
         { 
             this.transform.RotateAround(this.transform.position, Vector3.up, -turnSpeed * Time.deltaTime); 
             

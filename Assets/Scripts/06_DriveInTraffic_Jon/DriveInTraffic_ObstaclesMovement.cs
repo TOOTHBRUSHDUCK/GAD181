@@ -9,26 +9,41 @@ public class DriveInTraffic_ObstaclesMovement : MonoBehaviour
     public Axis axis;
     public float moveDistance;
     public float moveSpeed;
+    private bool freezeMovement; 
 
     void Update()
     {
-        Vector3 moveDirection = Vector3.zero;
-        switch (this.axis)
+        if(GameManager.Instance.isPaused==false)
         {
-            case Axis.X_AXIS:
-                moveDirection = this.transform.right;
-                break;
-
-            case Axis.Y_AXIS:
-                moveDirection = this.transform.up;
-                break;
-
-            case Axis.Z_AXIS:
-                moveDirection = this.transform.forward;
-                break;
+            freezeMovement = false;
+            AIMovementControl();
         }
+        else
+        {
+            freezeMovement = true;
+        }
+    }
+    void AIMovementControl()
+    {
+        if(freezeMovement==false)
+        {
+            Vector3 moveDirection = Vector3.zero;
+            switch (this.axis)
+            {
+                case Axis.X_AXIS:
+                    moveDirection = this.transform.right;
+                    break;
 
-        this.transform.position += moveDirection * Time.deltaTime * this.moveDistance * Mathf.Sin(Time.time * this.moveSpeed);
+                case Axis.Y_AXIS:
+                    moveDirection = this.transform.up;
+                    break;
+
+                case Axis.Z_AXIS:
+                    moveDirection = this.transform.forward;
+                    break;
+            }
+            this.transform.position += moveDirection * Time.deltaTime * this.moveDistance * Mathf.Sin(Time.time * this.moveSpeed);
+        }
     }
 }
 

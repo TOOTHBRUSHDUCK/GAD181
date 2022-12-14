@@ -18,7 +18,14 @@ public class Umbrella_RainSpawn : MonoBehaviour
 
     void Update()
     {
-        
+        if(GameManager.Instance.isPaused==false)
+        {
+            StartRainSpawn();
+        }
+        else
+        {
+            CancelRainSpawn();
+        }
     }
     private void RollRain()
     {

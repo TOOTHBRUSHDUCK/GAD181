@@ -32,8 +32,11 @@ public class CookEgg_ProgressBar : MonoBehaviour
     
     void Update()
     {
+        if(GameManager.Instance.isPaused==false)
+        {
         ProgressChange();
         ProgressColorChange();
+        }
     }
     //progress value will only increase if temperature slider value is in between minTempValue and maxTempValue
     private void ProgressChange()

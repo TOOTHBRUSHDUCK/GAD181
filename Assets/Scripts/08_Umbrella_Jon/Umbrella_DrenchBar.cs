@@ -9,14 +9,21 @@ public class Umbrella_DrenchBar : MonoBehaviour
     [SerializeField] Slider drenchSlider;
     [SerializeField] float decreaseDrenchValue;
     [SerializeField] TextMeshProUGUI drenchValueUI;
-    [SerializeField] bool drenchBarOn = false;
+    [SerializeField] bool drenchBarOn;
     void Start()
     {
-        drenchBarOn = false;
+        drenchBarOn = true;
     }
        void Update()
     {
-        
+        if(GameManager.Instance.isPaused == false)
+        {
+            drenchBarOn = true;
+        }  
+        else
+        {
+            drenchBarOn = false;
+        }
     }
     public void IncreaseDrenchValue()
     {   if(drenchBarOn == true)
